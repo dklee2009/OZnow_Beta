@@ -7,17 +7,17 @@ import android.os.Handler;
 /**
  * Created by DKLEE on 2015-08-14.
  */
-public class Intro_Activity extends MainActivity {
+public class IntroActivity extends OZnowActivity {
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.intro_main);
+        setContentView(R.layout.oz_main_intro);
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
-                Intent intent = new Intent(Intro_Activity.this, MainActivity.class);
+                Intent intent = new Intent(IntroActivity.this, OZnowActivity.class);
                 startActivity(intent);
                 finish();
             }
