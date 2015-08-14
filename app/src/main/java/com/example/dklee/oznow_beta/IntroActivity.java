@@ -17,7 +17,7 @@ public class IntroActivity extends OZnowActivity {
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
-                Intent intent = new Intent(IntroActivity.this, OZnowActivity.class);
+                Intent intent = new Intent(IntroActivity.this, AllListActivity.class);
                 startActivity(intent);
                 finish();
             }

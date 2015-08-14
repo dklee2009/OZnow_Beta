@@ -30,15 +30,18 @@
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/dynamicArea">
-   <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText_todo"
-
-        />
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/checkbox_todo"/>
+           <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_todo"
+               android:hint="todo를 입력해주세요" />
     </LinearLayout>
 </LinearLayout>
