@@ -34,13 +34,12 @@ public class AllListActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.oz_main);
-
         Button categoryBtn=(Button)findViewById(R.id.button_category);
         categoryBtn.setVisibility(View.VISIBLE);
         categoryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {// 카테고리 버튼을 눌렀을때 작성페이지로 넘어가도록 intent 처리 후에 중간에 카테고리 선택 Activity 추가
-                Intent intent=new Intent(AllListActivity.this,OZnowActivity.class);
+                Intent intent=new Intent(AllListActivity.this,OZ_category_Activity.class);
                 startActivity(intent);
             }
         });
