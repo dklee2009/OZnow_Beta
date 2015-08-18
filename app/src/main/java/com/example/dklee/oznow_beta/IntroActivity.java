@@ -13,7 +13,6 @@ public class IntroActivity extends OZnowActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.oz_main_intro);
-
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {

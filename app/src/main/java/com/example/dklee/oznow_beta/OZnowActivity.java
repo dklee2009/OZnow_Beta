@@ -40,15 +40,17 @@ public class OZnowActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String content=contentEt.getText().toString();
                 String kind=null;
+                String bookmark="no";
                 if(contentEt.getHint()!="note를 입력해주세요"){
                     kind="todo";
                 }
                 else{
                     kind="note";
                 }
-                String sql="insert into ozContent(content, kind) values(?,?)";
+
+                String sql="insert into ozContent(content, kind, bookmark) values(?,?,?)";
                 SQLiteDatabase db=contentDBHelper.getWritableDatabase();
-                db.execSQL(sql, new String[] {content, kind});
+                db.execSQL(sql, new String[] {content, kind, bookmark});
                 showToast("db에 저장 ok");
                 // 자장 후 전체 리스트로 돌아가도록 설정
                 Intent intent=new Intent(OZnowActivity.this,AllListActivity.class);
@@ -60,7 +62,7 @@ public class OZnowActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 linearLayout = (LinearLayout) findViewById(R.id.dynamicArea);
-                checkBox_todo.setVisibility(View.GONE);
+                checkBox_todo.setVisibility(View.INVISIBLE);
                 contentEt.setVisibility(View.GONE);
                 EditText editText_note = new EditText(OZnowActivity.this);
                 editText_note.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -85,6 +87,11 @@ public class OZnowActivity extends AppCompatActivity {
         super.onResume();
         contentEt=(EditText)findViewById(R.id.editText_todo);
         CheckBox todoCheck=new CheckBox(OZnowActivity.this);
+        Intent intent=getIntent();
+        String content=intent.getStringExtra("content");
+        if(content!=null){
+            contentEt.setText(content);
+        }
         //contentEt.append(todoCheck.toString());
     }
     public void showToast(String mess){
