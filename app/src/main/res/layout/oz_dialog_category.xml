@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:padding="10dp">
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:id="@+id/btn_img"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:background="buttons/btnr.png"/>
+
+    <EditText
+        android:id="@+id/dialog_edittxt"
+        android:layout_marginTop="30dp"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:hint="카테고리를 입력해주세요"/>
+</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <Button
+            android:id="@+id/dialog_ok"
+            android:layout_gravity="left"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="확인"/>
+        <Button
+            android:id="@+id/dialog_cancel"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="취소"/>
+</LinearLayout>
+</LinearLayout>
