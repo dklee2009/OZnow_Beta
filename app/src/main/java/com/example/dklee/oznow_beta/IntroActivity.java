@@ -20,6 +20,6 @@ public class IntroActivity extends OZnowActivity {
                 startActivity(intent);
                 finish();
             }
-        }, 2000);
+        }, 3000);
     }
 }
