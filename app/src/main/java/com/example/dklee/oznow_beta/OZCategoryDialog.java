@@ -28,7 +28,6 @@ public class OZCategoryDialog extends Dialog implements View.OnClickListener {
         dialog_ok = (Button)findViewById(R.id.dialog_ok);
         dialog_cancel = (Button)findViewById(R.id.dialog_cancel);
 
-
         dialog_ok.setOnClickListener(this);
         dialog_cancel.setOnClickListener(this);
     }

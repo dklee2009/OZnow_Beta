@@ -18,13 +18,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/TextView_content" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Book"
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/favorite_no"
                 android:layout_gravity="right"
-                android:id="@+id/Button_bookmark" />
+                android:id="@+id/Button_bookmark"
+                />
     </LinearLayout>
 
                 <Button

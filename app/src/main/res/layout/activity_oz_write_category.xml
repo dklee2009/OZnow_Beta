@@ -8,6 +8,7 @@
         android:layout_width="200dp"
         android:layout_height="220dp"
         android:id="@+id/center"
+        android:visibility="invisible"
         android:layout_centerInParent="true"/>
     /*버튼1*/
     <Button
@@ -19,13 +20,13 @@
         android:layout_centerHorizontal="true"
         android:background="@drawable/redbtn"/>
     <Button
-        android:id="@+id/ctg_btn11"
+        android:id="@+id/ctg_btn1_1"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:text=""
+        android:visibility="invisible"
         android:layout_above="@+id/ctg_txt1"
         android:layout_centerHorizontal="true"
-        android:visibility="invisible"
         android:background="@drawable/redbtn"/>
     <TextView
         android:id="@+id/ctg_txt1"
@@ -42,6 +43,15 @@
         android:layout_alignTop="@+id/center"
         android:layout_alignRight="@+id/center"
         android:background="@drawable/orangebtn"/>
+    <Button
+        android:id="@+id/ctg_btn2_2"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:text=""
+        android:visibility="invisible"
+        android:layout_alignTop="@+id/center"
+        android:layout_alignRight="@+id/center"
+        android:background="@drawable/orangebtn"/>
     <TextView
         android:id="@+id/ctg_txt2"
         android:layout_width="80dp"
@@ -55,6 +65,18 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:text="+"
+        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_above="@+id/ctg_txt7"
+        android:layout_toRightOf="@+id/ctg_txt1"
+        android:layout_toEndOf="@+id/ctg_txt1"
+        android:background="@drawable/yellowbtn"/>
+    <Button
+        android:id="@+id/ctg_btn3_3"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:text=""
+        android:visibility="invisible"
         android:layout_marginLeft="30dp"
         android:layout_marginStart="30dp"
         android:layout_above="@+id/ctg_txt7"
@@ -78,6 +100,16 @@
         android:layout_alignRight="@+id/center"
         android:layout_alignEnd="@+id/center"
         android:background="@drawable/lightgreenbtn"/>
+    <Button
+        android:id="@+id/ctg_btn4_4"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:text=""
+        android:visibility="invisible"
+        android:layout_alignBottom="@+id/center"
+        android:layout_alignRight="@+id/center"
+        android:layout_alignEnd="@+id/center"
+        android:background="@drawable/lightgreenbtn"/>
 
     <TextView
         android:id="@+id/ctg_txt4"
@@ -94,6 +126,15 @@
         android:layout_alignBottom="@+id/ctg_txt6"
         android:layout_centerHorizontal="true"
         android:background="@drawable/greenbtn"/>
+    <Button
+        android:id="@+id/ctg_btn5_5"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:text=""
+        android:visibility="invisible"
+        android:layout_alignBottom="@+id/ctg_txt6"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/greenbtn"/>
     <TextView
         android:id="@+id/ctg_txt5"
         android:layout_width="80dp"
@@ -107,6 +148,16 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:text="+"
+        android:layout_alignBottom="@+id/center"
+        android:layout_alignLeft="@+id/center"
+        android:layout_alignStart="@+id/center"
+        android:background="@drawable/lightbluebtn"/>
+    <Button
+        android:id="@+id/ctg_btn6_6"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:text=""
+        android:visibility="invisible"
         android:layout_alignBottom="@+id/center"
         android:layout_alignLeft="@+id/center"
         android:layout_alignStart="@+id/center"
@@ -129,6 +180,18 @@
         android:layout_toLeftOf="@+id/ctg_txt1"
         android:layout_toStartOf="@+id/ctg_txt1"
         android:background="@drawable/bluebtn"/>
+    <Button
+        android:id="@+id/ctg_btn7_7"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:text=""
+        android:visibility="invisible"
+        android:layout_marginRight="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/ctg_txt1"
+        android:layout_toStartOf="@+id/ctg_txt1"
+        android:background="@drawable/bluebtn"/>
     <TextView
         android:id="@+id/ctg_txt7"
         android:layout_width="80dp"
@@ -142,6 +205,15 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:text="+"
+        android:layout_alignLeft="@+id/center"
+        android:layout_alignTop="@+id/center"
+        android:background="@drawable/purplebtn"/>
+    <Button
+        android:id="@+id/ctg_btn8_8"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:text=""
+        android:visibility="invisible"
         android:layout_alignLeft="@+id/center"
         android:layout_alignTop="@+id/center"
         android:background="@drawable/purplebtn"/>

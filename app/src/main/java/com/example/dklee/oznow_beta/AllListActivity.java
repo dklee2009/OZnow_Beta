@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,7 +46,6 @@ public class AllListActivity extends Activity implements AdapterView.OnItemClick
                 startActivity(intent);
             }
         });
-
     }
     /**
      * todo나 note작성후 AllListActivity로 돌아오면 onCreate는 다시 실행되지 않는다.
@@ -77,7 +77,6 @@ public class AllListActivity extends Activity implements AdapterView.OnItemClick
         listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         listView.setDivider(new ColorDrawable(Color.RED));
         listView.setDividerHeight(2);
-
     }
 
     @Override
@@ -109,7 +108,8 @@ public class AllListActivity extends Activity implements AdapterView.OnItemClick
             //textView hiddendata없나?
             tv.setText(getItem(position).getContent());
             tv.setOnClickListener(this);
-            Button bookBtn=(Button)v.findViewById(R.id.Button_bookmark);
+            ImageButton bookBtn=(ImageButton)v.findViewById(R.id.Button_bookmark);
+            bookBtn.setBackgroundColor(Color.WHITE);
             bookBtn.setOnClickListener(this);
 
             Button delBtn=(Button)v.findViewById(R.id.Button_delete);
