@@ -17,6 +17,14 @@
         android:text="+"
         android:layout_above="@+id/ctg_txt1"
         android:layout_centerHorizontal="true" />
+    <Button
+        android:id="@+id/ctg_btn11"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:text=""
+        android:layout_above="@+id/ctg_txt1"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"/>
     <TextView
         android:id="@+id/ctg_txt1"
         android:layout_width="80dp"

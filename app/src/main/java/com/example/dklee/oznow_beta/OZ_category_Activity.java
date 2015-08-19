@@ -1,5 +1,6 @@
 package com.example.dklee.oznow_beta;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,13 +16,16 @@ import android.widget.TextView;
  * Created by DKLEE on 2015-08-17.
  */
 public class OZ_category_Activity extends AppCompatActivity implements View.OnClickListener {
+    private Button ctg_btn_11;
+    private Button ctg_btn_1;
+    private OZ_category_dialog ctg_dialog;
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.oz_write_category);
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
 
-        Button ctg_btn_1 = (Button)findViewById(R.id.ctg_btn1);
+        ctg_btn_1 = (Button)findViewById(R.id.ctg_btn1);
         ctg_btn_1.setOnClickListener(this);
         Button ctg_btn_2 = (Button)findViewById(R.id.ctg_btn2);
         ctg_btn_2.setOnClickListener(this);
@@ -37,8 +41,9 @@ public class OZ_category_Activity extends AppCompatActivity implements View.OnCl
         ctg_btn_7.setOnClickListener(this);
         Button ctg_btn_8 = (Button)findViewById(R.id.ctg_btn8);
         ctg_btn_8.setOnClickListener(this);
+        ctg_btn_11 = (Button)findViewById(R.id.ctg_btn11);
 
-        TextView ctg_txt1 = (TextView)findViewById(R.id.ctg_txt1);
+        final TextView ctg_txt1 = (TextView)findViewById(R.id.ctg_txt1);
         TextView ctg_txt2 = (TextView)findViewById(R.id.ctg_txt2);
         TextView ctg_txt3 = (TextView)findViewById(R.id.ctg_txt3);
         TextView ctg_txt4 = (TextView)findViewById(R.id.ctg_txt4);
@@ -47,9 +52,14 @@ public class OZ_category_Activity extends AppCompatActivity implements View.OnCl
         TextView ctg_txt7 = (TextView)findViewById(R.id.ctg_txt7);
         TextView ctg_txt8 = (TextView)findViewById(R.id.ctg_txt8);
 
-        OZ_category_dialog ctg_dialog;
-
         ctg_dialog = new OZ_category_dialog(OZ_category_Activity.this);
+        ctg_dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                ctg_txt1.setText(ctg_dialog.getcategoryName());
+
+            }
+        });
 
 
 
@@ -60,8 +70,16 @@ public class OZ_category_Activity extends AppCompatActivity implements View.OnCl
         TextView tv=(TextView)v;
         switch(tv.getId()){
             case R.id.ctg_btn1 :
-                Intent intent=new Intent(OZ_category_Activity.this, OZnowActivity.class);
-                startActivity(intent);
+                ctg_dialog.show();
+                ctg_btn_1.setVisibility(View.INVISIBLE);
+                ctg_btn_11.setVisibility(View.VISIBLE);
+                ctg_btn_11.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent=new Intent(OZ_category_Activity.this, OZnowActivity.class);
+                        startActivity(intent);
+                    }
+                });
         }
     }
 }
