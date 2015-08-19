@@ -15,7 +15,7 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:text="+"
-        android:layout_above="@id/ctg_txt1"
+        android:layout_above="@+id/ctg_txt1"
         android:layout_centerHorizontal="true" />
     <TextView
         android:id="@+id/ctg_txt1"

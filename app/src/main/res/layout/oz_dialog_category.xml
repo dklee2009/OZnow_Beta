@@ -14,7 +14,7 @@
         android:id="@+id/btn_img"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
-        android:background="buttons/btnr.png"/>
+        />
 
     <EditText
         android:id="@+id/dialog_edittxt"

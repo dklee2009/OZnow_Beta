@@ -1,72 +1,184 @@
 package com.example.dklee.oznow_beta;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.media.Image;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.List;
+import java.util.ArrayList;
+import java.util.GregorianCalendar;
 
 /**
  * Created by kyounghee on 2015-08-12.
  */
-public class AllListActivity extends Activity {
-    private ContentDBHelper contentDBHelper;
+public class AllListActivity extends Activity implements AdapterView.OnItemClickListener {
     private ListView listView;
-    private ArrayAdapter adapter;
-    private Cursor cursor;
+    ContentDBHelper contentDBHelper = new ContentDBHelper(this);
+    ArrayList<ContentVO> allList= new ArrayList<ContentVO>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.oz_main);
-        Button categoryBtn=(Button)findViewById(R.id.button_category);
-        categoryBtn.setVisibility(View.VISIBLE);
+        listView = (ListView) findViewById(R.id.allList);
+        Button categoryBtn = (Button) findViewById(R.id.button_category);
+        TextView textView_today=(TextView)findViewById(R.id.textView_today);
+        GregorianCalendar today=new GregorianCalendar();
+        textView_today.setText(today.get(today.MONTH) + 1 + " . " + today.get(today.DATE));
         categoryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {// Ä«Å×°í¸® ¹öÆ°À» ´­·¶À»¶§ ÀÛ¼ºÆäÀÌÁö·Î ³Ñ¾î°¡µµ·Ï intent Ã³¸® ÈÄ¿¡ Áß°£¿¡ Ä«Å×°í¸® ¼±ÅÃ Activity Ãß°¡
-                Intent intent=new Intent(AllListActivity.this,OZ_category_Activity.class);
+            public void onClick(View v) {
+                Intent intent = new Intent(AllListActivity.this, OZ_category_Activity.class);
                 startActivity(intent);
             }
         });
-    }
 
+    }
     /**
-     * todo³ª noteÀÛ¼ºÈÄ AllListActivity·Î µ¹¾Æ¿À¸é onCreate´Â ´Ù½Ã ½ÇÇàµÇÁö ¾Ê´Â´Ù.
-     * µû¶ó¼­ onResume¿¡¼­ ¸ñ·ÏÀ» Ç¥ÇöÇÏµµ·Ï ÇØ Ç×»ó ¾÷µ¥ÀÌÆ® µÇµµ·Ï ÇØ¾ß ÇÑ´Ù.
+     * todoë‚˜ noteì‘ì„±í›„ AllListActivityë¡œ ëŒì•„ì˜¤ë©´ onCreateëŠ” ë‹¤ì‹œ ì‹¤í–‰ë˜ì§€ ì•ŠëŠ”ë‹¤.
+     * ë”°ë¼ì„œ onResumeì—ì„œ ëª©ë¡ì„ í‘œí˜„í•˜ë„ë¡ í•´ í•­ìƒ ì—…ë°ì´íŠ¸ ë˜ë„ë¡ í•´ì•¼ í•œë‹¤.
      */
     @Override
     protected void onResume() {
         super.onResume();
-        contentDBHelper=new ContentDBHelper(this);
-        SQLiteDatabase db=contentDBHelper.getReadableDatabase();
-        String sql="select * from ozContent";
-        cursor=db.rawQuery(sql,null);
-        startManagingCursor(cursor);
-        SimpleCursorAdapter adapter= new SimpleCursorAdapter(this, android.R.layout.simple_list_item_2, cursor, new String[]{"content", "kind"}, new int[]{
-                android.R.id.text1,android.R.id.text2},1);
-        listView=(ListView)findViewById(R.id.allList);
+        //dbì— ì €ì¥ëœ ë‚´ìš©ì„ ì‹¤ì§ˆì ìœ¼ë¡œ ë¶ˆëŸ¬ì˜¤ëŠ”
+        SQLiteDatabase db = contentDBHelper.getReadableDatabase();
+        String sql = "select * from ozContent order by _id desc";
+        Cursor cursor = db.rawQuery(sql, null);
+
+        String content, kind, bookmark=null;
+        int _id=0;
+        while(cursor.moveToNext()) {
+            _id = cursor.getInt(0);
+            content = cursor.getString(1);
+            kind = cursor.getString(2);
+            bookmark=cursor.getString(3);
+            listView.setId(_id);
+            allList.add(new ContentVO(_id, content, kind, bookmark));
+        }
+        listView.setOnItemClickListener(this);
+        CustomAdapter adapter=new CustomAdapter(this, R.layout.oz_main_item, allList);
+        adapter.notifyDataSetChanged();
         listView.setAdapter(adapter);
-        //sqlite »ç¿ë¾ÈÇÒ ¶§!!!
-        /*String list[]=this.fileList();
-        ArrayAdapter<String> adapter=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,list);
-        ListView listView=(ListView)findViewById(R.id.allList);
-        listView.setAdapter(adapter);*/
+        Log.d("listviewì˜ id", String.valueOf(listView.getId()));
+        listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        listView.setDivider(new ColorDrawable(Color.RED));
+        listView.setDividerHeight(2);
+
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        TextView tv=(TextView)view;
+        String content=tv.getText().toString();
+        Toast.makeText(this,content,Toast.LENGTH_SHORT).show();
     }
 
 
+    private class CustomAdapter extends ArrayAdapter<ContentVO> implements View.OnClickListener{
+        private ArrayList<ContentVO> items;
+        private Context context;
+        String content;
+
+        public CustomAdapter(Context context, int textViewResourceId, ArrayList<ContentVO> objects) {
+            super(context, textViewResourceId, objects);
+            this.context = context;
+            this.items=objects;
+        }
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View v=convertView;
+            if(v==null){
+                LayoutInflater layoutInflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                v=layoutInflater.inflate(R.layout.oz_main_item, null);
+            }
+            TextView tv=(TextView)v.findViewById(R.id.TextView_content);
+            //textView hiddendataì—†ë‚˜?
+            tv.setText(getItem(position).getContent());
+            tv.setOnClickListener(this);
+            Button bookBtn=(Button)v.findViewById(R.id.Button_bookmark);
+            bookBtn.setOnClickListener(this);
+
+            Button delBtn=(Button)v.findViewById(R.id.Button_delete);
+            delBtn.setOnClickListener(this);
+
+            Button upBtn=(Button)v.findViewById(R.id.Button_update);
+            upBtn.setOnClickListener(this);
+
+            return v;
+
+        }
+
+
+        @Override
+        public int getCount() {
+            return super.getCount();
+        }
+
+        @Override
+        public int getPosition(ContentVO item) {
+            return super.getPosition(item);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return super.getItemId(position);
+        }
+
+        @Override
+        public ContentVO getItem(int position) {
+            return super.getItem(position);
+        }
+
+        @Override
+        public void onClick(View v) {
+            int viewId=v.getId();
+            String content=null;
+            if(viewId==R.id.TextView_content){
+                TextView tv=(TextView)v;
+                content=tv.getText().toString();
+                Log.d("connnnn", content);
+            }
+            if(viewId==R.id.Button_delete){
+                TextView tv=(TextView)findViewById(R.id.TextView_content);
+                content=tv.getText().toString();
+                Log.d("connnnn", content);
+                Log.d("ddddd","dele");
+                SQLiteDatabase db = contentDBHelper.getWritableDatabase();
+                String sql="delete from ozContent where content='"+content+"'";
+                db.execSQL(sql);
+                Intent intent=new Intent(AllListActivity.this, AllListActivity.class);
+                startActivity(intent);
+            }
+            if(viewId==R.id.Button_bookmark){
+                TextView tv=(TextView)findViewById(R.id.TextView_content);
+                content=tv.getText().toString();
+                SQLiteDatabase db = contentDBHelper.getWritableDatabase();
+                String sql = "update ozContent set bookmark='"+"favorite"+"' where content='"+content+"'";
+                db.execSQL(sql);
+            }
+            if(viewId==R.id.Button_update){
+                //ì´ê²Œ todoì¸ì§€ noteì¸ì§€ êµ¬ë¶„ì´ ì—†ë‹¤... ì–´ë–»ê²Œí•˜ì§€?
+                TextView tv=(TextView)findViewById(R.id.TextView_content);
+                content=tv.getText().toString();
+                Intent intent=new Intent(AllListActivity.this, OZnowActivity.class);
+                intent.putExtra("content",content);
+                startActivity(intent);
+
+            }
+        }
+    }
 }
