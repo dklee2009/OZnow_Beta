@@ -12,7 +12,7 @@ public class IntroActivity extends OZnowActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.oz_main_intro);
+        setContentView(R.layout.activity_oz_intro);
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {

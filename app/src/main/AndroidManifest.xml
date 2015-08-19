@@ -17,6 +17,6 @@
         </activity>
         <activity android:name=".AllListActivity"/>
         <activity android:name=".OZnowActivity"/>
-        <activity android:name=".OZ_category_Activity"/>
+        <activity android:name=".OZCategoryActivity"/>
     </application>
 </manifest>

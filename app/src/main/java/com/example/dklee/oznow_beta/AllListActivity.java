@@ -32,7 +32,7 @@ public class AllListActivity extends Activity implements AdapterView.OnItemClick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.oz_main);
+        setContentView(R.layout.activity_oz_main);
         listView = (ListView) findViewById(R.id.allList);
         Button categoryBtn = (Button) findViewById(R.id.button_category);
         TextView textView_today=(TextView)findViewById(R.id.textView_today);
@@ -41,7 +41,7 @@ public class AllListActivity extends Activity implements AdapterView.OnItemClick
         categoryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AllListActivity.this, OZ_category_Activity.class);
+                Intent intent = new Intent(AllListActivity.this, OZCategoryActivity.class);
                 startActivity(intent);
             }
         });
@@ -70,7 +70,7 @@ public class AllListActivity extends Activity implements AdapterView.OnItemClick
             allList.add(new ContentVO(_id, content, kind, bookmark));
         }
         listView.setOnItemClickListener(this);
-        CustomAdapter adapter=new CustomAdapter(this, R.layout.oz_main_item, allList);
+        CustomAdapter adapter=new CustomAdapter(this, R.layout.row_oz_main_item, allList);
         adapter.notifyDataSetChanged();
         listView.setAdapter(adapter);
         Log.d("listview의 id", String.valueOf(listView.getId()));
@@ -103,7 +103,7 @@ public class AllListActivity extends Activity implements AdapterView.OnItemClick
             View v=convertView;
             if(v==null){
                 LayoutInflater layoutInflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                v=layoutInflater.inflate(R.layout.oz_main_item, null);
+                v=layoutInflater.inflate(R.layout.row_oz_main_item, null);
             }
             TextView tv=(TextView)v.findViewById(R.id.TextView_content);
             //textView hiddendata없나?

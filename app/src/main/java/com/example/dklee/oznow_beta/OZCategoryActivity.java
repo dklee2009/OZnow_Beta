@@ -5,24 +5,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.Switch;
 import android.widget.TextView;
 
 
 /**
  * Created by DKLEE on 2015-08-17.
  */
-public class OZ_category_Activity extends AppCompatActivity implements View.OnClickListener {
+public class OZCategoryActivity extends AppCompatActivity implements View.OnClickListener {
     private Button ctg_btn_11;
     private Button ctg_btn_1;
-    private OZ_category_dialog ctg_dialog;
+    private OZCategoryDialog ctg_dialog;
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.oz_write_category);
+        setContentView(R.layout.activity_oz_write_category);
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
 
         ctg_btn_1 = (Button)findViewById(R.id.ctg_btn1);
@@ -52,7 +50,7 @@ public class OZ_category_Activity extends AppCompatActivity implements View.OnCl
         TextView ctg_txt7 = (TextView)findViewById(R.id.ctg_txt7);
         TextView ctg_txt8 = (TextView)findViewById(R.id.ctg_txt8);
 
-        ctg_dialog = new OZ_category_dialog(OZ_category_Activity.this);
+        ctg_dialog = new OZCategoryDialog(OZCategoryActivity.this);
         ctg_dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialog) {
@@ -76,7 +74,7 @@ public class OZ_category_Activity extends AppCompatActivity implements View.OnCl
                 ctg_btn_11.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent=new Intent(OZ_category_Activity.this, OZnowActivity.class);
+                        Intent intent=new Intent(OZCategoryActivity.this, OZnowActivity.class);
                         startActivity(intent);
                     }
                 });

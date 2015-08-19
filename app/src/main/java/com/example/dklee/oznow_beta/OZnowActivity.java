@@ -8,16 +8,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintWriter;
 
 public class OZnowActivity extends AppCompatActivity {
 
@@ -28,7 +23,7 @@ public class OZnowActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.oz_write);
+        setContentView(R.layout.activity_oz_write);
         contentDBHelper=new ContentDBHelper(this);
         contentEt=(EditText)findViewById(R.id.editText_todo);
         Button saveBtn=(Button)findViewById(R.id.button_save);
