@@ -16,6 +16,8 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:text="+"
+        android:textColor="#ffffff"
+        android:textSize="25dp"
         android:layout_above="@+id/ctg_txt1"
         android:layout_centerHorizontal="true"
         android:background="@drawable/redbtn"/>
@@ -34,13 +36,18 @@
         android:layout_height="20dp"
         android:saveEnabled="true"
         android:layout_alignBottom="@+id/ctg_btn2"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:textSize="15dp"/>
     /*버튼2*/
     <Button
         android:id="@+id/ctg_btn2"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:text="+"
+        android:textColor="#ffffff"
+        android:textSize="25dp"
         android:layout_alignTop="@+id/center"
         android:layout_alignRight="@+id/center"
         android:background="@drawable/orangebtn"/>
@@ -59,6 +66,9 @@
         android:layout_height="20dp"
         android:layout_below="@+id/ctg_btn2"
         android:layout_toRightOf="@+id/ctg_btn1"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:textSize="15dp"
         />
     /*버튼3*/
     <Button
@@ -66,6 +76,8 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:text="+"
+        android:textColor="#ffffff"
+        android:textSize="25dp"
         android:layout_marginLeft="30dp"
         android:layout_marginStart="30dp"
         android:layout_above="@+id/ctg_txt7"
@@ -90,13 +102,18 @@
         android:layout_height="20dp"
         android:layout_below="@+id/ctg_btn3"
         android:layout_alignLeft="@+id/ctg_btn3"
-        android:layout_alignStart="@+id/ctg_btn3" />
+        android:layout_alignStart="@+id/ctg_btn3"
+        android:gravity="left"
+        android:textColor="#ffffff"
+        android:textSize="15dp"/>
     /*버튼4*/
     <Button
         android:id="@+id/ctg_btn4"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:text="+"
+        android:textColor="#ffffff"
+        android:textSize="25dp"
         android:layout_alignBottom="@+id/center"
         android:layout_alignRight="@+id/center"
         android:layout_alignEnd="@+id/center"
@@ -117,13 +134,18 @@
         android:layout_width="80dp"
         android:layout_height="20dp"
         android:layout_below="@+id/center"
-        android:layout_toRightOf="@+id/ctg_btn5" />
+        android:layout_toRightOf="@+id/ctg_btn5"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:textSize="15dp"/>
     /*버튼5*/
     <Button
         android:id="@+id/ctg_btn5"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:text="+"
+        android:textColor="#ffffff"
+        android:textSize="25dp"
         android:layout_alignBottom="@+id/ctg_txt6"
         android:layout_centerHorizontal="true"
         android:background="@drawable/greenbtn"/>
@@ -141,7 +163,10 @@
         android:layout_width="80dp"
         android:layout_height="20dp"
         android:layout_below="@+id/ctg_btn5"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:textSize="15dp"/>
 
     /*버튼6*/
     <Button
@@ -149,6 +174,8 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:text="+"
+        android:textColor="#ffffff"
+        android:textSize="25dp"
         android:layout_alignBottom="@+id/center"
         android:layout_alignLeft="@+id/center"
         android:layout_alignStart="@+id/center"
@@ -168,13 +195,18 @@
         android:layout_width="80dp"
         android:layout_height="20dp"
         android:layout_below="@+id/center"
-        android:layout_toLeftOf="@+id/ctg_btn5" />
+        android:layout_toLeftOf="@+id/ctg_btn5"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:textSize="15dp"/>
     /*버튼7*/
     <Button
         android:id="@+id/ctg_btn7"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:text="+"
+        android:textColor="#ffffff"
+        android:textSize="25dp"
         android:layout_marginRight="30dp"
         android:layout_marginEnd="30dp"
         android:layout_centerVertical="true"
@@ -199,13 +231,18 @@
         android:layout_height="20dp"
         android:layout_below="@+id/ctg_btn7"
         android:layout_alignRight="@+id/ctg_btn7"
-        android:layout_alignEnd="@+id/ctg_btn7" />
+        android:layout_alignEnd="@+id/ctg_btn7"
+        android:gravity="right"
+        android:textColor="#ffffff"
+        android:textSize="15dp"/>
     /*버튼8*/
     <Button
         android:id="@+id/ctg_btn8"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:text="+"
+        android:textColor="#ffffff"
+        android:textSize="25dp"
         android:layout_alignLeft="@+id/center"
         android:layout_alignTop="@+id/center"
         android:background="@drawable/purplebtn"/>
@@ -224,6 +261,9 @@
         android:layout_height="20dp"
         android:layout_below="@+id/ctg_btn8"
         android:layout_toLeftOf="@+id/ctg_btn1"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:textSize="15dp"
        />
 
 

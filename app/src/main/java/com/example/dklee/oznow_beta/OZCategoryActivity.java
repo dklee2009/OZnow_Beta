@@ -23,7 +23,6 @@ import java.util.HashMap;
  * Created by DKLEE on 2015-08-17.
  */
 public class OZCategoryActivity extends AppCompatActivity {
-    private HashMap<Integer, CategoryVO> map;
     private Button ctg_btn_1;
     private Button ctg_btn_2;
     private Button ctg_btn_3;
@@ -49,8 +48,7 @@ public class OZCategoryActivity extends AppCompatActivity {
     private TextView ctg_txt7;
     private TextView ctg_txt8;
     private OZCategoryDialog ctg_dialog;
-    private CategoryDBHelper categoryDBHelper;
-    private String category_name1;
+    String category_name1;
     private String category_name2;
     private String category_name3;
     private String category_name4;
@@ -59,11 +57,11 @@ public class OZCategoryActivity extends AppCompatActivity {
     private String category_name7;
     private String category_name8;
 
+
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_oz_category);
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-        categoryDBHelper = new CategoryDBHelper(this);
         ctg_txt1 = (TextView) findViewById(R.id.ctg_txt1);
         ctg_txt2 = (TextView) findViewById(R.id.ctg_txt2);
         ctg_txt3 = (TextView) findViewById(R.id.ctg_txt3);
@@ -98,14 +96,15 @@ public class OZCategoryActivity extends AppCompatActivity {
         if (intent.getStringExtra("category_name8") != null) {
             ctg_txt8.setText(intent.getStringExtra("category_name8"));
         }
+
         ctg_btn_1 = (Button) findViewById(R.id.ctg_btn1);
         ctg_btn_1_1 = (Button) findViewById(R.id.ctg_btn1_1);
         ctg_btn_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ctg_dialog.show();
-                ctg_btn_1.setVisibility(View.INVISIBLE);
-                ctg_btn_1_1.setVisibility(View.VISIBLE);
+                ctg_btn_2.setVisibility(View.INVISIBLE);
+                ctg_btn_2_2.setVisibility(View.VISIBLE);
                 ctg_btn_1_1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
