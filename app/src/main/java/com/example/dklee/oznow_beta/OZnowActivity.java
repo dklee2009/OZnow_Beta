@@ -20,6 +20,14 @@ public class OZnowActivity extends AppCompatActivity {
     private LinearLayout linearLayout;
     private CheckBox checkBox_todo;
     ContentDBHelper contentDBHelper;
+    private String category_name1;
+    private String category_name2;
+    private String category_name3;
+    private String category_name4;
+    private String category_name5;
+    private String category_name6;
+    private String category_name7;
+    private String category_name8;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +38,31 @@ public class OZnowActivity extends AppCompatActivity {
         Button todoWriteBtn=(Button)findViewById(R.id.button_todoWrite);
         Button noteWriteBtn=(Button)findViewById(R.id.button_noteWrite);
         checkBox_todo=(CheckBox)findViewById(R.id.checkbox_todo);
-
+        Intent intent=getIntent();
+        if(intent.getStringExtra("category_name1")!=null){
+            category_name1=intent.getStringExtra("category_name1");
+        }
+        if(intent.getStringExtra("category_name2")!=null){
+            category_name2=intent.getStringExtra("category_name2");
+        }
+        if(intent.getStringExtra("category_name3")!=null){
+            category_name3=intent.getStringExtra("category_name3");
+        }
+        if(intent.getStringExtra("category_name4")!=null){
+            category_name4=intent.getStringExtra("category_name4");
+        }
+        if(intent.getStringExtra("category_name5")!=null){
+            category_name5=intent.getStringExtra("category_name5");
+        }
+        if(intent.getStringExtra("category_name6")!=null){
+            category_name6=intent.getStringExtra("category_name6");
+        }
+        if(intent.getStringExtra("category_name7")!=null){
+            category_name7=intent.getStringExtra("category_name7");
+        }
+        if(intent.getStringExtra("category_name8")!=null){
+            category_name8=intent.getStringExtra("category_name8");
+        }
         saveBtn.setOnClickListener(new View.OnClickListener() {//익명함수 사용
             @Override
             public void onClick(View v) {
@@ -43,15 +75,37 @@ public class OZnowActivity extends AppCompatActivity {
                 else{
                     kind="note";
                 }
-
                 String sql="insert into ozContent(content, kind, bookmark) values(?,?,?)";
                 SQLiteDatabase db=contentDBHelper.getWritableDatabase();
                 db.execSQL(sql, new String[] {content, kind, bookmark});
                 showToast("db에 저장 ok");
                 // 자장 후 전체 리스트로 돌아가도록 설정
                 Intent intent=new Intent(OZnowActivity.this,AllListActivity.class);
+                if(category_name1!=null){
+                    intent.putExtra("category_name1", category_name1);
+                }
+                if(category_name2!=null){
+                    intent.putExtra("category_name2", category_name2);
+                }
+                if(category_name3!=null){
+                    intent.putExtra("category_name3", category_name3);
+                }
+                if(category_name4!=null){
+                    intent.putExtra("category_name4", category_name4);
+                }
+                if(category_name5!=null){
+                    intent.putExtra("category_name5", category_name5);
+                }
+                if(category_name6!=null){
+                    intent.putExtra("category_name6", category_name6);
+                }
+                if(category_name7!=null){
+                    intent.putExtra("category_name7", category_name7);
+                }
+                if(category_name8!=null){
+                    intent.putExtra("category_name8", category_name8);
+                }
                 startActivity(intent);
-                finish();
             }
         });
         noteWriteBtn.setOnClickListener(new View.OnClickListener() {
@@ -95,18 +149,6 @@ public class OZnowActivity extends AppCompatActivity {
         contentEt.setText("");
     }
 
-   /* public void saveFile(){
-        String content=contentEt.getText().toString();
-        try {
-            FileOutputStream fos=openFileOutput(content,MODE_PRIVATE);// 후에 카테고리 네임으로
-            PrintWriter pw= new PrintWriter(fos);
-            pw.println(content);
-            pw.close();
-            Toast.makeText(this, "todo 저장 ok", Toast.LENGTH_SHORT).show();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }*/
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

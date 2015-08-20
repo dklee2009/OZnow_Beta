@@ -15,15 +15,13 @@ public class OZCategoryDialog extends Dialog implements View.OnClickListener {
     private EditText dialog_edittxt;
     private Button dialog_ok , dialog_cancel;
     private String dialog_category;
-
     public OZCategoryDialog(Context context){
         super(context);
     }
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dialog_oz_category);
-
+        setContentView(R.layout.dialog_oz_category_write);
         dialog_edittxt = (EditText)findViewById(R.id.dialog_edittxt);
         dialog_ok = (Button)findViewById(R.id.dialog_ok);
         dialog_cancel = (Button)findViewById(R.id.dialog_cancel);
@@ -31,7 +29,6 @@ public class OZCategoryDialog extends Dialog implements View.OnClickListener {
         dialog_ok.setOnClickListener(this);
         dialog_cancel.setOnClickListener(this);
     }
-
     public String getcategoryName(){
         return dialog_category;
     }
@@ -39,7 +36,7 @@ public class OZCategoryDialog extends Dialog implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if( v== dialog_ok){
+        if( v.getId()== R.id.dialog_ok){
             dialog_category = dialog_edittxt.getText().toString();
             dismiss();
         }

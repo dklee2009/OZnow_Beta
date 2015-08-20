@@ -32,6 +32,7 @@
         android:id="@+id/ctg_txt1"
         android:layout_width="80dp"
         android:layout_height="20dp"
+        android:saveEnabled="true"
         android:layout_alignBottom="@+id/ctg_btn2"
         android:layout_centerHorizontal="true"/>
     /*버튼2*/

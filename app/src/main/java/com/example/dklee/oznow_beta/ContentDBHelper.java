@@ -24,8 +24,6 @@ public class ContentDBHelper extends SQLiteOpenHelper {
         String sql="create table "+TABLE_NAME
                 +"(_id integer primary key autoincrement, content text not null, kind text not null, bookmark text)";
         db.execSQL(sql);
-
-
     }
     /**
      * DB 버전 변경될 때 호출
