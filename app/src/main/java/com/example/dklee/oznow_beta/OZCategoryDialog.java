@@ -27,6 +27,9 @@ public class OZCategoryDialog extends Dialog implements View.OnClickListener {
 
     }
 
+
+
+
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_oz_category_write);
