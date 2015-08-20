@@ -24,6 +24,7 @@ public class OZCategoryDialog extends Dialog implements View.OnClickListener {
     private String message;
     public OZCategoryDialog(Context context){
         super(context);
+
     }
 
     protected void onCreate(Bundle savedInstanceState){

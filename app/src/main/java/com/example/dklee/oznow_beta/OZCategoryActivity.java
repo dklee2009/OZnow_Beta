@@ -20,7 +20,6 @@ import android.widget.Toast;
 
 import java.util.HashMap;
 
-
 /**
  * Created by DKLEE on 2015-08-17.
  */
