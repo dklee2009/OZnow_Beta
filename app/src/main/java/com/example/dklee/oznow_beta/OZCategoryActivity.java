@@ -88,6 +88,13 @@ public class OZCategoryActivity extends AppCompatActivity {
         ctg_btn_8_8 = (Button) findViewById(R.id.ctg_btn8_8);
         ctg_dialog = new OZCategoryDialog(OZCategoryActivity.this);
         ctg_btn_1.setVisibility(View.VISIBLE);
+        ctg_btn_2.setVisibility(View.VISIBLE);
+        ctg_btn_3.setVisibility(View.VISIBLE);
+        ctg_btn_4.setVisibility(View.VISIBLE);
+        ctg_btn_5.setVisibility(View.VISIBLE);
+        ctg_btn_6.setVisibility(View.VISIBLE);
+        ctg_btn_7.setVisibility(View.VISIBLE);
+        ctg_btn_8.setVisibility(View.VISIBLE);
         Intent intent = getIntent();
         if (intent.getStringExtra("category_name1") != null) {
             Log.d("rrrrrrr","red");

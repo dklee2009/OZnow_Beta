@@ -27,6 +27,11 @@
                 android:layout_gravity="right"
                 android:id="@+id/Button_bookmark"
                 />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="삭제"
+            android:id="@+id/Button_delete"/>
     </LinearLayout>
 
 

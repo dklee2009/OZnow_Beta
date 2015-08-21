@@ -81,7 +81,6 @@ public class OZnowActivity extends AppCompatActivity {
                 String sql="insert into ozContent(content, kind, bookmark, category) values(?,?,?,?)";
                 SQLiteDatabase db=contentDBHelper.getWritableDatabase();
                 db.execSQL(sql, new String[] {content, kind, bookmark, click_category});
-                showToast("db에 저장 ok");
                 // 자장 후 전체 리스트로 돌아가도록 설정
                 Intent intent=new Intent(OZnowActivity.this,AllListActivity.class);
                 if(category_name1!=null){
@@ -147,10 +146,7 @@ public class OZnowActivity extends AppCompatActivity {
         }
         //contentEt.append(todoCheck.toString());
     }
-    public void showToast(String mess){
-        Toast.makeText(this, mess, Toast.LENGTH_SHORT).show();
-        contentEt.setText("");
-    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -106,7 +106,7 @@ public class AllListActivity extends Activity implements AdapterView.OnItemClick
             listView.setId(_id);
             allList.add(new ContentVO(_id, content, kind, bookmark, category));
         }
-        Toast.makeText(this, category,Toast.LENGTH_SHORT).show();
+
         listView.setOnItemClickListener(this);
         CustomAdapter adapter=new CustomAdapter(this, R.layout.row_oz_main_item, allList);
         adapter.notifyDataSetChanged();
@@ -148,9 +148,10 @@ public class AllListActivity extends Activity implements AdapterView.OnItemClick
                 LayoutInflater layoutInflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 v=layoutInflater.inflate(R.layout.row_oz_main_item, null);
             }
-
+            Button del_btn=(Button)v.findViewById(R.id.Button_delete);
+            del_btn.setOnClickListener(this);
             box = (LinearLayout)v.findViewById(R.id.ctg_box);
-            /*if(getItem(position).getCategory().equals("red")){
+            if(getItem(position).getCategory().equals("red")){
                 box.setBackgroundResource(R.drawable.red_bar);
             }else if(getItem(position).getCategory().equals("orange")){
                 box.setBackgroundResource(R.drawable.orange_bar);
@@ -166,7 +167,7 @@ public class AllListActivity extends Activity implements AdapterView.OnItemClick
                 box.setBackgroundResource(R.drawable.blue_bar);
             }else if(getItem(position).getCategory().equals("purple")){
                 box.setBackgroundResource(R.drawable.purple_bar);
-            }*/
+            }
             TextView tv=(TextView)v.findViewById(R.id.TextView_content);
             //textView hiddendata없나?
             tv.setText(getItem(position).getContent());
@@ -207,7 +208,7 @@ public class AllListActivity extends Activity implements AdapterView.OnItemClick
                 TextView tv=(TextView)v;
                 content=tv.getText().toString();
             }
-            /*
+
             if(viewId==R.id.Button_delete){
                 TextView tv=(TextView)findViewById(R.id.TextView_content);
                 content=tv.getText().toString();
@@ -217,6 +218,7 @@ public class AllListActivity extends Activity implements AdapterView.OnItemClick
                 Intent intent=new Intent(AllListActivity.this, AllListActivity.class);
                 startActivity(intent);
             }
+            /*
             if(viewId==R.id.Button_bookmark){
                 TextView tv=(TextView)findViewById(R.id.TextView_content);
                 content=tv.getText().toString();
