@@ -22,14 +22,10 @@ public class OZCategoryDialog extends Dialog implements View.OnClickListener {
     private String dialog_category;
     private ImageView imageView;
     private String message;
-    public OZCategoryDialog(Context context){
+    public OZCategoryDialog(Context context) {
         super(context);
 
     }
-
-
-
-
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_oz_category_write);

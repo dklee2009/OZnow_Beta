@@ -61,6 +61,7 @@ public class OZCategoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_oz_category);
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        Log.d("onCCCCCCC", "onCreate");
         ctg_txt1 = (TextView) findViewById(R.id.ctg_txt1);
         ctg_txt2 = (TextView) findViewById(R.id.ctg_txt2);
         ctg_txt3 = (TextView) findViewById(R.id.ctg_txt3);
@@ -69,9 +70,29 @@ public class OZCategoryActivity extends AppCompatActivity {
         ctg_txt6 = (TextView) findViewById(R.id.ctg_txt6);
         ctg_txt7 = (TextView) findViewById(R.id.ctg_txt7);
         ctg_txt8 = (TextView) findViewById(R.id.ctg_txt8);
+        ctg_btn_1 = (Button) findViewById(R.id.ctg_btn1);
+        ctg_btn_2 = (Button) findViewById(R.id.ctg_btn2);
+        ctg_btn_3 = (Button) findViewById(R.id.ctg_btn3);
+        ctg_btn_4 = (Button) findViewById(R.id.ctg_btn4);
+        ctg_btn_5 = (Button) findViewById(R.id.ctg_btn5);
+        ctg_btn_6 = (Button) findViewById(R.id.ctg_btn6);
+        ctg_btn_7 = (Button) findViewById(R.id.ctg_btn7);
+        ctg_btn_8 = (Button) findViewById(R.id.ctg_btn8);
+        ctg_btn_1_1 = (Button) findViewById(R.id.ctg_btn1_1);
+        ctg_btn_2_2 = (Button) findViewById(R.id.ctg_btn2_2);
+        ctg_btn_3_3 = (Button) findViewById(R.id.ctg_btn3_3);
+        ctg_btn_4_4 = (Button) findViewById(R.id.ctg_btn4_4);
+        ctg_btn_5_5 = (Button) findViewById(R.id.ctg_btn5_5);
+        ctg_btn_6_6 = (Button) findViewById(R.id.ctg_btn6_6);
+        ctg_btn_7_7 = (Button) findViewById(R.id.ctg_btn7_7);
+        ctg_btn_8_8 = (Button) findViewById(R.id.ctg_btn8_8);
         ctg_dialog = new OZCategoryDialog(OZCategoryActivity.this);
+        ctg_btn_1.setVisibility(View.VISIBLE);
         Intent intent = getIntent();
         if (intent.getStringExtra("category_name1") != null) {
+            Log.d("rrrrrrr","red");
+            ctg_btn_1.setVisibility(View.INVISIBLE);
+            ctg_btn_1_1.setVisibility(View.VISIBLE);
             ctg_txt1.setText(intent.getStringExtra("category_name1"));
         }
         if (intent.getStringExtra("category_name2") != null) {
@@ -95,14 +116,12 @@ public class OZCategoryActivity extends AppCompatActivity {
         if (intent.getStringExtra("category_name8") != null) {
             ctg_txt8.setText(intent.getStringExtra("category_name8"));
         }
-        ctg_btn_1 = (Button) findViewById(R.id.ctg_btn1);
-        ctg_btn_1_1 = (Button) findViewById(R.id.ctg_btn1_1);
         ctg_btn_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ctg_dialog.setMessage("red");
                 ctg_dialog.show();
-                ctg_btn_1.setVisibility(View.INVISIBLE);
+                //ctg_btn_1.setVisibility(View.INVISIBLE);
                 ctg_btn_1_1.setVisibility(View.VISIBLE);
                 ctg_btn_1_1.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -116,7 +135,7 @@ public class OZCategoryActivity extends AppCompatActivity {
                         intent.putExtra("category_name6", ctg_txt6.getText());
                         intent.putExtra("category_name7", ctg_txt7.getText());
                         intent.putExtra("category_name8", ctg_txt8.getText());
-                        intent.putExtra("click_category", ctg_txt1.getText());
+                        intent.putExtra("click_category", "red");
                         startActivity(intent);
                     }
                 });
@@ -127,18 +146,17 @@ public class OZCategoryActivity extends AppCompatActivity {
                     public void onDismiss(DialogInterface dialog) {
                         category_name1 = ctg_dialog.getcategoryName();
                         ctg_txt1.setText(ctg_dialog.getcategoryName());
+                        ctg_btn_1.setVisibility(View.INVISIBLE);
                     }
                 });
                 ctg_dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                     @Override
                     public void onCancel(DialogInterface dialog) {
-
+                        ctg_btn_1.setVisibility(View.VISIBLE);
                     }
                 });
             }
         });
-        ctg_btn_2 = (Button) findViewById(R.id.ctg_btn2);
-        ctg_btn_2_2 = (Button) findViewById(R.id.ctg_btn2_2);
         ctg_btn_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -158,7 +176,7 @@ public class OZCategoryActivity extends AppCompatActivity {
                         intent.putExtra("category_name6", ctg_txt6.getText());
                         intent.putExtra("category_name7", ctg_txt7.getText());
                         intent.putExtra("category_name8", ctg_txt8.getText());
-                        intent.putExtra("click_category", ctg_txt2.getText());
+                        intent.putExtra("click_category", "orange");
                         startActivity(intent);
                     }
                 });
@@ -179,8 +197,6 @@ public class OZCategoryActivity extends AppCompatActivity {
                 });
             }
         });
-        ctg_btn_3 = (Button) findViewById(R.id.ctg_btn3);
-        ctg_btn_3_3 = (Button) findViewById(R.id.ctg_btn3_3);
         ctg_btn_3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -200,7 +216,7 @@ public class OZCategoryActivity extends AppCompatActivity {
                         intent.putExtra("category_name6", ctg_txt6.getText());
                         intent.putExtra("category_name7", ctg_txt7.getText());
                         intent.putExtra("category_name8", ctg_txt8.getText());
-                        intent.putExtra("click_category", ctg_txt3.getText());
+                        intent.putExtra("click_category", "yellow");
                         startActivity(intent);
                     }
                 });
@@ -221,12 +237,10 @@ public class OZCategoryActivity extends AppCompatActivity {
                 });
             }
         });
-        ctg_btn_4 = (Button) findViewById(R.id.ctg_btn4);
-        ctg_btn_4_4 = (Button) findViewById(R.id.ctg_btn4_4);
         ctg_btn_4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ctg_dialog.setMessage("green");
+                ctg_dialog.setMessage("lightgreen");
                 ctg_dialog.show();
                 ctg_btn_4.setVisibility(View.INVISIBLE);
                 ctg_btn_4_4.setVisibility(View.VISIBLE);
@@ -242,7 +256,7 @@ public class OZCategoryActivity extends AppCompatActivity {
                         intent.putExtra("category_name6", ctg_txt6.getText());
                         intent.putExtra("category_name7", ctg_txt7.getText());
                         intent.putExtra("category_name8", ctg_txt8.getText());
-                        intent.putExtra("click_category", ctg_txt4.getText());
+                        intent.putExtra("click_category", "lightgreen");
                         startActivity(intent);
                     }
                 });
@@ -263,12 +277,10 @@ public class OZCategoryActivity extends AppCompatActivity {
                 });
             }
         });
-        ctg_btn_5 = (Button) findViewById(R.id.ctg_btn5);
-        ctg_btn_5_5 = (Button) findViewById(R.id.ctg_btn5_5);
         ctg_btn_5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ctg_dialog.setMessage("lightgreen");
+                ctg_dialog.setMessage("green");
                 ctg_dialog.show();
                 ctg_btn_5.setVisibility(View.INVISIBLE);
                 ctg_btn_5_5.setVisibility(View.VISIBLE);
@@ -284,7 +296,7 @@ public class OZCategoryActivity extends AppCompatActivity {
                         intent.putExtra("category_name6", ctg_txt6.getText());
                         intent.putExtra("category_name7", ctg_txt7.getText());
                         intent.putExtra("category_name8", ctg_txt8.getText());
-                        intent.putExtra("click_category", ctg_txt5.getText());
+                        intent.putExtra("click_category", "green");
                         startActivity(intent);
                     }
                 });
@@ -305,8 +317,6 @@ public class OZCategoryActivity extends AppCompatActivity {
                 });
             }
         });
-        ctg_btn_6 = (Button) findViewById(R.id.ctg_btn6);
-        ctg_btn_6_6 = (Button) findViewById(R.id.ctg_btn6_6);
         ctg_btn_6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -326,7 +336,7 @@ public class OZCategoryActivity extends AppCompatActivity {
                         intent.putExtra("category_name6", ctg_txt6.getText());
                         intent.putExtra("category_name7", ctg_txt7.getText());
                         intent.putExtra("category_name8", ctg_txt8.getText());
-                        intent.putExtra("click_category", ctg_txt6.getText());
+                        intent.putExtra("click_category", "lightblue");
                         startActivity(intent);
                     }
                 });
@@ -347,8 +357,6 @@ public class OZCategoryActivity extends AppCompatActivity {
                 });
             }
         });
-        ctg_btn_7 = (Button) findViewById(R.id.ctg_btn7);
-        ctg_btn_7_7 = (Button) findViewById(R.id.ctg_btn7_7);
         ctg_btn_7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -368,7 +376,7 @@ public class OZCategoryActivity extends AppCompatActivity {
                         intent.putExtra("category_name6", ctg_txt6.getText());
                         intent.putExtra("category_name7", ctg_txt7.getText());
                         intent.putExtra("category_name8", ctg_txt8.getText());
-                        intent.putExtra("click_category", ctg_txt7.getText());
+                        intent.putExtra("click_category", "blue");
                         startActivity(intent);
                     }
                 });
@@ -389,8 +397,6 @@ public class OZCategoryActivity extends AppCompatActivity {
                 });
             }
         });
-        ctg_btn_8 = (Button) findViewById(R.id.ctg_btn8);
-        ctg_btn_8_8 = (Button) findViewById(R.id.ctg_btn8_8);
         ctg_btn_8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -410,7 +416,7 @@ public class OZCategoryActivity extends AppCompatActivity {
                         intent.putExtra("category_name6", ctg_txt6.getText());
                         intent.putExtra("category_name7", ctg_txt7.getText());
                         intent.putExtra("category_name8", ctg_txt8.getText());
-                        intent.putExtra("click_category", ctg_txt8.getText());
+                        intent.putExtra("click_category", "purple");
                         startActivity(intent);
                     }
                 });

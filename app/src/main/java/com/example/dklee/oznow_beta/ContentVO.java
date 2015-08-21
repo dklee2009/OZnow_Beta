@@ -10,17 +10,19 @@ public class ContentVO {
     private String content;
     private String kind;
     private String bookmark;
+    private String category;
 
     public ContentVO(){
         super();
     }
 
-    public ContentVO(int id, String content, String kind, String  bookmark){
+    public ContentVO(int id, String content, String kind, String  bookmark, String category){
         super();
         this.id=id;
         this.content=content;
         this.kind=kind;
         this.bookmark=bookmark;
+        this.category=category;
     }
 
     public void setId(int id) {
@@ -53,5 +55,13 @@ public class ContentVO {
 
     public String getBookmark() {
         return bookmark;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getCategory() {
+        return category;
     }
 }

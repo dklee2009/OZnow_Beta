@@ -16,6 +16,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,7 +40,8 @@ public class AllListActivity extends Activity implements AdapterView.OnItemClick
     private String category_name6;
     private String category_name7;
     private String category_name8;
-
+    private String category;
+    private LinearLayout box;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +51,7 @@ public class AllListActivity extends Activity implements AdapterView.OnItemClick
         TextView textView_today=(TextView)findViewById(R.id.textView_today);
         GregorianCalendar today=new GregorianCalendar();
         textView_today.setText(today.get(today.MONTH) + 1 + " . " + today.get(today.DATE));
+        box = (LinearLayout)findViewById(R.id.ctg_box);
         categoryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,15 +102,16 @@ public class AllListActivity extends Activity implements AdapterView.OnItemClick
             content = cursor.getString(1);
             kind = cursor.getString(2);
             bookmark=cursor.getString(3);
+            category=cursor.getString(4);
             listView.setId(_id);
-            allList.add(new ContentVO(_id, content, kind, bookmark));
+            allList.add(new ContentVO(_id, content, kind, bookmark, category));
         }
+        Toast.makeText(this, category,Toast.LENGTH_SHORT).show();
         listView.setOnItemClickListener(this);
         CustomAdapter adapter=new CustomAdapter(this, R.layout.row_oz_main_item, allList);
         adapter.notifyDataSetChanged();
         listView.setAdapter(adapter);
         listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-        listView.setDivider(new ColorDrawable(Color.RED));
         listView.setDividerHeight(2);
         Intent intent=getIntent();
         category_name1=intent.getStringExtra("category_name1");
@@ -117,19 +122,16 @@ public class AllListActivity extends Activity implements AdapterView.OnItemClick
         category_name6=intent.getStringExtra("category_name6");
         category_name7=intent.getStringExtra("category_name7");
         category_name8=intent.getStringExtra("category_name8");
-
-        //Toast.makeText(this, intent.getStringExtra("category_name"), Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         TextView tv=(TextView)view;
         String content=tv.getText().toString();
-        Toast.makeText(this,content,Toast.LENGTH_SHORT).show();
     }
 
 
-    private class CustomAdapter extends ArrayAdapter<ContentVO> implements View.OnClickListener{
+    private class CustomAdapter extends ArrayAdapter<ContentVO> implements View.OnClickListener {
         private ArrayList<ContentVO> items;
         private Context context;
         String content;
@@ -146,20 +148,29 @@ public class AllListActivity extends Activity implements AdapterView.OnItemClick
                 LayoutInflater layoutInflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 v=layoutInflater.inflate(R.layout.row_oz_main_item, null);
             }
+
+            box = (LinearLayout)v.findViewById(R.id.ctg_box);
+            /*if(getItem(position).getCategory().equals("red")){
+                box.setBackgroundResource(R.drawable.red_bar);
+            }else if(getItem(position).getCategory().equals("orange")){
+                box.setBackgroundResource(R.drawable.orange_bar);
+            }else if(getItem(position).getCategory().equals("yellow")){
+                box.setBackgroundResource(R.drawable.yellow_bar);
+            }else if(getItem(position).getCategory().equals("lightgreen")){
+                box.setBackgroundResource(R.drawable.lime_bar);
+            }else if(getItem(position).getCategory().equals("green")){
+                box.setBackgroundResource(R.drawable.green_box);
+            }else if(getItem(position).getCategory().equals("lightblue")){
+                box.setBackgroundResource(R.drawable.skyblue_bar);
+            }else if(getItem(position).getCategory().equals("blue")){
+                box.setBackgroundResource(R.drawable.blue_bar);
+            }else if(getItem(position).getCategory().equals("purple")){
+                box.setBackgroundResource(R.drawable.purple_bar);
+            }*/
             TextView tv=(TextView)v.findViewById(R.id.TextView_content);
             //textView hiddendata없나?
             tv.setText(getItem(position).getContent());
             tv.setOnClickListener(this);
-            ImageButton bookBtn=(ImageButton)v.findViewById(R.id.Button_bookmark);
-            bookBtn.setBackgroundColor(Color.WHITE);
-            bookBtn.setOnClickListener(this);
-
-            Button delBtn=(Button)v.findViewById(R.id.Button_delete);
-            delBtn.setOnClickListener(this);
-
-            Button upBtn=(Button)v.findViewById(R.id.Button_update);
-            upBtn.setOnClickListener(this);
-
             return v;
 
         }
@@ -185,6 +196,9 @@ public class AllListActivity extends Activity implements AdapterView.OnItemClick
             return super.getItem(position);
         }
 
+
+
+
         @Override
         public void onClick(View v) {
             int viewId=v.getId();
@@ -193,6 +207,7 @@ public class AllListActivity extends Activity implements AdapterView.OnItemClick
                 TextView tv=(TextView)v;
                 content=tv.getText().toString();
             }
+            /*
             if(viewId==R.id.Button_delete){
                 TextView tv=(TextView)findViewById(R.id.TextView_content);
                 content=tv.getText().toString();
@@ -217,7 +232,7 @@ public class AllListActivity extends Activity implements AdapterView.OnItemClick
                 intent.putExtra("content",content);
                 startActivity(intent);
 
-            }
+            }*/
         }
     }
 }

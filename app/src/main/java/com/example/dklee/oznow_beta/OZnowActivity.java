@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,6 +29,7 @@ public class OZnowActivity extends AppCompatActivity {
     private String category_name6;
     private String category_name7;
     private String category_name8;
+    private String click_category;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +65,7 @@ public class OZnowActivity extends AppCompatActivity {
         if(intent.getStringExtra("category_name8")!=null){
             category_name8=intent.getStringExtra("category_name8");
         }
+        click_category=intent.getStringExtra("click_category");
         saveBtn.setOnClickListener(new View.OnClickListener() {//익명함수 사용
             @Override
             public void onClick(View v) {
@@ -75,9 +78,9 @@ public class OZnowActivity extends AppCompatActivity {
                 else{
                     kind="note";
                 }
-                String sql="insert into ozContent(content, kind, bookmark) values(?,?,?)";
+                String sql="insert into ozContent(content, kind, bookmark, category) values(?,?,?,?)";
                 SQLiteDatabase db=contentDBHelper.getWritableDatabase();
-                db.execSQL(sql, new String[] {content, kind, bookmark});
+                db.execSQL(sql, new String[] {content, kind, bookmark, click_category});
                 showToast("db에 저장 ok");
                 // 자장 후 전체 리스트로 돌아가도록 설정
                 Intent intent=new Intent(OZnowActivity.this,AllListActivity.class);
