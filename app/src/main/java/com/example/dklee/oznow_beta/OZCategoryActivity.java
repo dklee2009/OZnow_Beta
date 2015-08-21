@@ -96,24 +96,38 @@ public class OZCategoryActivity extends AppCompatActivity {
             ctg_txt1.setText(intent.getStringExtra("category_name1"));
         }
         if (intent.getStringExtra("category_name2") != null) {
+            ctg_btn_2.setVisibility(View.INVISIBLE);
+            ctg_btn_2_2.setVisibility(View.VISIBLE);
             ctg_txt2.setText(intent.getStringExtra("category_name2"));
         }
         if (intent.getStringExtra("category_name3") != null) {
+            ctg_btn_3.setVisibility(View.INVISIBLE);
+            ctg_btn_3_3.setVisibility(View.VISIBLE);
             ctg_txt3.setText(intent.getStringExtra("category_name3"));
         }
         if (intent.getStringExtra("category_name4") != null) {
+            ctg_btn_4.setVisibility(View.INVISIBLE);
+            ctg_btn_4_4.setVisibility(View.VISIBLE);
             ctg_txt4.setText(intent.getStringExtra("category_name4"));
         }
         if (intent.getStringExtra("category_name5") != null) {
+            ctg_btn_5.setVisibility(View.INVISIBLE);
+            ctg_btn_5_5.setVisibility(View.VISIBLE);
             ctg_txt5.setText(intent.getStringExtra("category_name5"));
         }
         if (intent.getStringExtra("category_name6") != null) {
+            ctg_btn_6.setVisibility(View.INVISIBLE);
+            ctg_btn_6_6.setVisibility(View.VISIBLE);
             ctg_txt6.setText(intent.getStringExtra("category_name6"));
         }
         if (intent.getStringExtra("category_name7") != null) {
+            ctg_btn_7.setVisibility(View.INVISIBLE);
+            ctg_btn_7_7.setVisibility(View.VISIBLE);
             ctg_txt7.setText(intent.getStringExtra("category_name7"));
         }
         if (intent.getStringExtra("category_name8") != null) {
+            ctg_btn_8.setVisibility(View.INVISIBLE);
+            ctg_btn_8_8.setVisibility(View.VISIBLE);
             ctg_txt8.setText(intent.getStringExtra("category_name8"));
         }
         ctg_btn_1.setOnClickListener(new View.OnClickListener() {
