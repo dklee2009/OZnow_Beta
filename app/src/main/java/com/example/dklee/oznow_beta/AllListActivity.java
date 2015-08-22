@@ -5,10 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,11 +13,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
@@ -160,7 +155,7 @@ public class AllListActivity extends Activity implements AdapterView.OnItemClick
             }else if(getItem(position).getCategory().equals("lightgreen")){
                 box.setBackgroundResource(R.drawable.lime_bar);
             }else if(getItem(position).getCategory().equals("green")){
-                box.setBackgroundResource(R.drawable.green_box);
+                box.setBackgroundResource(R.drawable.green_Bar);
             }else if(getItem(position).getCategory().equals("lightblue")){
                 box.setBackgroundResource(R.drawable.skyblue_bar);
             }else if(getItem(position).getCategory().equals("blue")){

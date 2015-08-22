@@ -143,7 +143,7 @@ public class OZCategoryActivity extends AppCompatActivity {
                 ctg_dialog.setMessage("red");
                 ctg_dialog.show();
                 //ctg_btn_1.setVisibility(View.INVISIBLE);
-                ctg_btn_1_1.setVisibility(View.VISIBLE);
+                //ctg_btn_1_1.setVisibility(View.VISIBLE);
                 ctg_btn_1_1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -165,15 +165,16 @@ public class OZCategoryActivity extends AppCompatActivity {
 
                     @Override
                     public void onDismiss(DialogInterface dialog) {
+                        ctg_btn_1.setVisibility(View.INVISIBLE);
                         category_name1 = ctg_dialog.getcategoryName();
                         ctg_txt1.setText(ctg_dialog.getcategoryName());
-                        ctg_btn_1.setVisibility(View.INVISIBLE);
+
                     }
                 });
                 ctg_dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                     @Override
                     public void onCancel(DialogInterface dialog) {
-                        ctg_btn_1.setVisibility(View.VISIBLE);
+                        //ctg_btn_1.setVisibility(View.VISIBLE);
                     }
                 });
             }
@@ -183,8 +184,8 @@ public class OZCategoryActivity extends AppCompatActivity {
             public void onClick(View v) {
                 ctg_dialog.setMessage("orange");
                 ctg_dialog.show();
-                ctg_btn_2.setVisibility(View.INVISIBLE);
-                ctg_btn_2_2.setVisibility(View.VISIBLE);
+                //ctg_btn_2.setVisibility(View.INVISIBLE);
+                //ctg_btn_2_2.setVisibility(View.VISIBLE);
                 ctg_btn_2_2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
