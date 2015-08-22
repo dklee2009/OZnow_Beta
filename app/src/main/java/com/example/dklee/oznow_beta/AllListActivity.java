@@ -155,7 +155,7 @@ public class AllListActivity extends Activity implements AdapterView.OnItemClick
             }else if(getItem(position).getCategory().equals("lightgreen")){
                 box.setBackgroundResource(R.drawable.lime_bar);
             }else if(getItem(position).getCategory().equals("green")){
-                box.setBackgroundResource(R.drawable.green_Bar);
+                box.setBackgroundResource(R.drawable.green_bar);
             }else if(getItem(position).getCategory().equals("lightblue")){
                 box.setBackgroundResource(R.drawable.skyblue_bar);
             }else if(getItem(position).getCategory().equals("blue")){
