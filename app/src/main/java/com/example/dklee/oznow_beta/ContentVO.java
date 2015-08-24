@@ -10,19 +10,21 @@ public class ContentVO {
     private String content;
     private String kind;
     private String bookmark;
-    private String category;
+    private String c_name;
+    private String c_color;
 
     public ContentVO(){
         super();
     }
 
-    public ContentVO(int id, String content, String kind, String  bookmark, String category){
+    public ContentVO(int id, String content, String kind, String  bookmark, String c_name, String c_color){
         super();
         this.id=id;
         this.content=content;
         this.kind=kind;
         this.bookmark=bookmark;
-        this.category=category;
+        this.c_name=c_name;
+        this.c_color=c_color;
     }
 
     public void setId(int id) {
@@ -57,11 +59,19 @@ public class ContentVO {
         return bookmark;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setC_name(String c_name) {
+        this.c_name = c_name;
     }
 
-    public String getCategory() {
-        return category;
+    public String getC_name() {
+        return c_name;
+    }
+
+    public void setC_color(String c_color) {
+        this.c_color = c_color;
+    }
+
+    public String getC_color() {
+        return c_color;
     }
 }

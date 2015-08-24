@@ -1,28 +1,22 @@
 package com.example.dklee.oznow_beta;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteConstraintException;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.util.HashMap;
-
-
 /**
  * Created by DKLEE on 2015-08-17.
  */
-public class OZCategoryActivity extends AppCompatActivity {
+public class OZCategoryActivity extends Activity implements View.OnClickListener {
     private Button ctg_btn_1;
     private Button ctg_btn_2;
     private Button ctg_btn_3;
@@ -48,20 +42,16 @@ public class OZCategoryActivity extends AppCompatActivity {
     private TextView ctg_txt7;
     private TextView ctg_txt8;
     private OZCategoryDialog ctg_dialog;
-    private String category_name1;
-    private String category_name2;
-    private String category_name3;
-    private String category_name4;
-    private String category_name5;
-    private String category_name6;
-    private String category_name7;
-    private String category_name8;
 
-    public void onCreate(final Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_oz_category);
+        Log.d("OZCategory", "meg onCreate");
+        //이거 언제 왜ㅆ는 거야? 동근오빠 ㅋㅋㅋㅋ
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-        Log.d("onCCCCCCC", "onCreate");
+        //카테고리 저장정보를 가져오는 SharedPreference
+        SharedPreferences pref = getSharedPreferences("category", MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
         ctg_txt1 = (TextView) findViewById(R.id.ctg_txt1);
         ctg_txt2 = (TextView) findViewById(R.id.ctg_txt2);
         ctg_txt3 = (TextView) findViewById(R.id.ctg_txt3);
@@ -87,378 +77,289 @@ public class OZCategoryActivity extends AppCompatActivity {
         ctg_btn_7_7 = (Button) findViewById(R.id.ctg_btn7_7);
         ctg_btn_8_8 = (Button) findViewById(R.id.ctg_btn8_8);
         ctg_dialog = new OZCategoryDialog(OZCategoryActivity.this);
-        ctg_btn_1.setVisibility(View.VISIBLE);
-        ctg_btn_2.setVisibility(View.VISIBLE);
-        ctg_btn_3.setVisibility(View.VISIBLE);
-        ctg_btn_4.setVisibility(View.VISIBLE);
-        ctg_btn_5.setVisibility(View.VISIBLE);
-        ctg_btn_6.setVisibility(View.VISIBLE);
-        ctg_btn_7.setVisibility(View.VISIBLE);
-        ctg_btn_8.setVisibility(View.VISIBLE);
-        Intent intent = getIntent();
-        if (intent.getStringExtra("category_name1") != null) {
-            Log.d("rrrrrrr","red");
+        //SharedPreference로 부터 저장된 카테고리 이름을 불러온 없을시 빈칸으로
+        String c1_name = pref.getString("c1_name", "");
+        String c2_name = pref.getString("c2_name", "");
+        String c3_name = pref.getString("c3_name", "");
+        String c4_name = pref.getString("c4_name", "");
+        String c5_name = pref.getString("c5_name", "");
+        String c6_name = pref.getString("c6_name", "");
+        String c7_name = pref.getString("c7_name", "");
+        String c8_name = pref.getString("c8_name", "");
+        //카테고리 이름이 빈칸인지 아닌지를 비교
+        if (!c1_name.equals("")) {
+            ctg_txt1.setText(c1_name);
             ctg_btn_1.setVisibility(View.INVISIBLE);
             ctg_btn_1_1.setVisibility(View.VISIBLE);
-            ctg_txt1.setText(intent.getStringExtra("category_name1"));
+            Log.d("c1", c1_name);
         }
-        if (intent.getStringExtra("category_name2") != null) {
+        if (!c2_name.equals("")) {
+            ctg_txt2.setText(c2_name);
             ctg_btn_2.setVisibility(View.INVISIBLE);
             ctg_btn_2_2.setVisibility(View.VISIBLE);
-            ctg_txt2.setText(intent.getStringExtra("category_name2"));
+            Log.d("c2", c2_name);
         }
-        if (intent.getStringExtra("category_name3") != null) {
+        if (!c3_name.equals("")) {
+            ctg_txt3.setText(c3_name);
             ctg_btn_3.setVisibility(View.INVISIBLE);
             ctg_btn_3_3.setVisibility(View.VISIBLE);
-            ctg_txt3.setText(intent.getStringExtra("category_name3"));
+            Log.d("c3", c3_name);
         }
-        if (intent.getStringExtra("category_name4") != null) {
+        if (!c4_name.equals("")) {
+            ctg_txt4.setText(c4_name);
             ctg_btn_4.setVisibility(View.INVISIBLE);
             ctg_btn_4_4.setVisibility(View.VISIBLE);
-            ctg_txt4.setText(intent.getStringExtra("category_name4"));
         }
-        if (intent.getStringExtra("category_name5") != null) {
+        if (!c5_name.equals("")) {
+            ctg_txt5.setText(c5_name);
             ctg_btn_5.setVisibility(View.INVISIBLE);
             ctg_btn_5_5.setVisibility(View.VISIBLE);
-            ctg_txt5.setText(intent.getStringExtra("category_name5"));
         }
-        if (intent.getStringExtra("category_name6") != null) {
+        if (!c6_name.equals("")) {
+            ctg_txt6.setText(c6_name);
             ctg_btn_6.setVisibility(View.INVISIBLE);
             ctg_btn_6_6.setVisibility(View.VISIBLE);
-            ctg_txt6.setText(intent.getStringExtra("category_name6"));
         }
-        if (intent.getStringExtra("category_name7") != null) {
+        if (!c7_name.equals("")) {
+            ctg_txt7.setText(c7_name);
             ctg_btn_7.setVisibility(View.INVISIBLE);
             ctg_btn_7_7.setVisibility(View.VISIBLE);
-            ctg_txt7.setText(intent.getStringExtra("category_name7"));
         }
-        if (intent.getStringExtra("category_name8") != null) {
+        if (!c8_name.equals("")) {
+            ctg_txt8.setText(c8_name);
             ctg_btn_8.setVisibility(View.INVISIBLE);
             ctg_btn_8_8.setVisibility(View.VISIBLE);
-            ctg_txt8.setText(intent.getStringExtra("category_name8"));
         }
-        ctg_btn_1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ctg_dialog.setMessage("red");
-                ctg_dialog.show();
-                //ctg_btn_1.setVisibility(View.INVISIBLE);
-                //ctg_btn_1_1.setVisibility(View.VISIBLE);
-                ctg_btn_1_1.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(OZCategoryActivity.this, OZnowActivity.class);
-                        intent.putExtra("category_name1", ctg_txt1.getText());
-                        intent.putExtra("category_name2", ctg_txt2.getText());
-                        intent.putExtra("category_name3", ctg_txt3.getText());
-                        intent.putExtra("category_name4", ctg_txt4.getText());
-                        intent.putExtra("category_name5", ctg_txt5.getText());
-                        intent.putExtra("category_name6", ctg_txt6.getText());
-                        intent.putExtra("category_name7", ctg_txt7.getText());
-                        intent.putExtra("category_name8", ctg_txt8.getText());
-                        intent.putExtra("click_category", "red");
-                        startActivity(intent);
-                    }
-                });
+        //각 버튼의 리스너
+        ctg_btn_1.setOnClickListener(this);
+        ctg_btn_1_1.setOnClickListener(this);
+        ctg_btn_2.setOnClickListener(this);
+        ctg_btn_2_2.setOnClickListener(this);
+        ctg_btn_3.setOnClickListener(this);
+        ctg_btn_3_3.setOnClickListener(this);
+        ctg_btn_4.setOnClickListener(this);
+        ctg_btn_4_4.setOnClickListener(this);
+        ctg_btn_5.setOnClickListener(this);
+        ctg_btn_5_5.setOnClickListener(this);
+        ctg_btn_6.setOnClickListener(this);
+        ctg_btn_6_6.setOnClickListener(this);
+        ctg_btn_7.setOnClickListener(this);
+        ctg_btn_7_7.setOnClickListener(this);
+        ctg_btn_8.setOnClickListener(this);
+        ctg_btn_8_8.setOnClickListener(this);
+    }
 
-                ctg_dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.ctg_btn1) {
+            ctg_dialog.setMessage("red");
+            ctg_dialog.show();
+            ctg_dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    ctg_txt1.setText(ctg_dialog.getcategoryName());
+                    //카테고리 이름은 sharedPreference에 저장
+                    SharedPreferences pref = getSharedPreferences("category", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putString("c1_name", ctg_dialog.getcategoryName());
+                    editor.commit();
+                    ctg_btn_1.setVisibility(View.INVISIBLE);
+                    ctg_btn_1_1.setVisibility(View.VISIBLE);
+                }
+            });
+            ctg_dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                @Override
+                public void onCancel(DialogInterface dialog) {
+                }
+            });
+        } else if (v.getId() == R.id.ctg_btn1_1) {
+            Intent intent = new Intent(this, OZnowActivity.class);
+            intent.putExtra("color", "red");
+            startActivity(intent);
+            finish();
+        } else if (v.getId() == R.id.ctg_btn2) {
+            ctg_dialog.setMessage("orange");
+            ctg_dialog.show();
+            ctg_dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    ctg_txt2.setText(ctg_dialog.getcategoryName());
+                    SharedPreferences pref = getSharedPreferences("category", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putString("c2_name", ctg_dialog.getcategoryName());
+                    editor.commit();
+                    ctg_btn_2.setVisibility(View.INVISIBLE);
+                    ctg_btn_2_2.setVisibility(View.VISIBLE);
+                }
+            });
+            ctg_dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                @Override
+                public void onCancel(DialogInterface dialog) {
 
-                    @Override
-                    public void onDismiss(DialogInterface dialog) {
-                        ctg_btn_1.setVisibility(View.INVISIBLE);
-                        category_name1 = ctg_dialog.getcategoryName();
-                        ctg_txt1.setText(ctg_dialog.getcategoryName());
+                }
+            });
+        } else if (v.getId() == R.id.ctg_btn2_2) {
+            Intent intent = new Intent(this, OZnowActivity.class);
+            intent.putExtra("color", "orange");
+            startActivity(intent);
+            finish();
+        } else if (v.getId() == R.id.ctg_btn3) {
+            ctg_dialog.setMessage("yellow");
+            ctg_dialog.show();
+            ctg_dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    ctg_txt3.setText(ctg_dialog.getcategoryName());
+                    SharedPreferences pref = getSharedPreferences("category", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putString("c3_name", ctg_dialog.getcategoryName());
+                    editor.commit();
+                    ctg_btn_3.setVisibility(View.INVISIBLE);
+                    ctg_btn_3_3.setVisibility(View.VISIBLE);
+                }
+            });
+            ctg_dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                @Override
+                public void onCancel(DialogInterface dialog) {
 
-                    }
-                });
-                ctg_dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                    @Override
-                    public void onCancel(DialogInterface dialog) {
-                        //ctg_btn_1.setVisibility(View.VISIBLE);
-                    }
-                });
-            }
-        });
-        ctg_btn_2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ctg_dialog.setMessage("orange");
-                ctg_dialog.show();
-                //ctg_btn_2.setVisibility(View.INVISIBLE);
-                //ctg_btn_2_2.setVisibility(View.VISIBLE);
-                ctg_btn_2_2.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(OZCategoryActivity.this, OZnowActivity.class);
-                        intent.putExtra("category_name1", ctg_txt1.getText());
-                        intent.putExtra("category_name2", ctg_txt2.getText());
-                        intent.putExtra("category_name3", ctg_txt3.getText());
-                        intent.putExtra("category_name4", ctg_txt4.getText());
-                        intent.putExtra("category_name5", ctg_txt5.getText());
-                        intent.putExtra("category_name6", ctg_txt6.getText());
-                        intent.putExtra("category_name7", ctg_txt7.getText());
-                        intent.putExtra("category_name8", ctg_txt8.getText());
-                        intent.putExtra("click_category", "orange");
-                        startActivity(intent);
-                    }
-                });
+                }
+            });
+        } else if (v.getId() == R.id.ctg_btn3_3) {
+            Intent intent = new Intent(this, OZnowActivity.class);
+            intent.putExtra("color", "yellow");
+            startActivity(intent);
+            finish();
+        } else if (v.getId() == R.id.ctg_btn4) {
+            ctg_dialog.setMessage("lightgreen");
+            ctg_dialog.show();
+            ctg_dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    ctg_txt4.setText(ctg_dialog.getcategoryName());
+                    SharedPreferences pref = getSharedPreferences("category", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putString("c4_name", ctg_dialog.getcategoryName());
+                    editor.commit();
+                    ctg_btn_4.setVisibility(View.INVISIBLE);
+                    ctg_btn_4_4.setVisibility(View.VISIBLE);
+                }
+            });
+            ctg_dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                @Override
+                public void onCancel(DialogInterface dialog) {
 
-                ctg_dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                }
+            });
+        } else if (v.getId() == R.id.ctg_btn4_4) {
+            Intent intent = new Intent(this, OZnowActivity.class);
+            intent.putExtra("color", "lightgreen");
+            startActivity(intent);
+            finish();
+        } else if (v.getId() == R.id.ctg_btn5) {
+            ctg_dialog.setMessage("green");
+            ctg_dialog.show();
+            ctg_dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    ctg_txt5.setText(ctg_dialog.getcategoryName());
+                    SharedPreferences pref = getSharedPreferences("category", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putString("c5_name", ctg_dialog.getcategoryName());
+                    editor.commit();
+                    ctg_btn_5.setVisibility(View.INVISIBLE);
+                    ctg_btn_5_5.setVisibility(View.VISIBLE);
+                }
+            });
+            ctg_dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                @Override
+                public void onCancel(DialogInterface dialog) {
 
-                    @Override
-                    public void onDismiss(DialogInterface dialog) {
-                        category_name2 = ctg_dialog.getcategoryName();
-                        ctg_txt2.setText(ctg_dialog.getcategoryName());
-                    }
-                });
-                ctg_dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                    @Override
-                    public void onCancel(DialogInterface dialog) {
+                }
+            });
+        } else if (v.getId() == R.id.ctg_btn5_5) {
+            Intent intent = new Intent(this, OZnowActivity.class);
+            intent.putExtra("color", "green");
+            startActivity(intent);
+            finish();
+        } else if (v.getId() == R.id.ctg_btn6) {
+            ctg_dialog.setMessage("lightblue");
+            ctg_dialog.show();
+            ctg_dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    ctg_txt6.setText(ctg_dialog.getcategoryName());
+                    SharedPreferences pref = getSharedPreferences("category", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putString("c6_name", ctg_dialog.getcategoryName());
+                    editor.commit();
+                    ctg_btn_6.setVisibility(View.INVISIBLE);
+                    ctg_btn_6_6.setVisibility(View.VISIBLE);
+                }
+            });
+            ctg_dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                @Override
+                public void onCancel(DialogInterface dialog) {
 
-                    }
-                });
-            }
-        });
-        ctg_btn_3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ctg_dialog.setMessage("yellow");
-                ctg_dialog.show();
-                ctg_btn_3.setVisibility(View.INVISIBLE);
-                ctg_btn_3_3.setVisibility(View.VISIBLE);
-                ctg_btn_3_3.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(OZCategoryActivity.this, OZnowActivity.class);
-                        intent.putExtra("category_name1", ctg_txt1.getText());
-                        intent.putExtra("category_name2", ctg_txt2.getText());
-                        intent.putExtra("category_name3", ctg_txt3.getText());
-                        intent.putExtra("category_name4", ctg_txt4.getText());
-                        intent.putExtra("category_name5", ctg_txt5.getText());
-                        intent.putExtra("category_name6", ctg_txt6.getText());
-                        intent.putExtra("category_name7", ctg_txt7.getText());
-                        intent.putExtra("category_name8", ctg_txt8.getText());
-                        intent.putExtra("click_category", "yellow");
-                        startActivity(intent);
-                    }
-                });
+                }
+            });
+        } else if (v.getId() == R.id.ctg_btn6_6) {
+            Intent intent = new Intent(this, OZnowActivity.class);
+            intent.putExtra("color", "lightblue");
+            startActivity(intent);
+            finish();
+        } else if (v.getId() == R.id.ctg_btn7) {
+            ctg_dialog.setMessage("blue");
+            ctg_dialog.show();
+            ctg_dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    ctg_txt7.setText(ctg_dialog.getcategoryName());
+                    SharedPreferences pref = getSharedPreferences("category", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putString("c7_name", ctg_dialog.getcategoryName());
+                    editor.commit();
+                    ctg_btn_7.setVisibility(View.INVISIBLE);
+                    ctg_btn_7_7.setVisibility(View.VISIBLE);
+                }
+            });
+            ctg_dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                @Override
+                public void onCancel(DialogInterface dialog) {
 
-                ctg_dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                }
+            });
+        } else if (v.getId() == R.id.ctg_btn7_7) {
+            Intent intent = new Intent(this, OZnowActivity.class);
+            intent.putExtra("color", "blue");
+            startActivity(intent);
+            finish();
+        } else if (v.getId() == R.id.ctg_btn8) {
+            ctg_dialog.setMessage("purple");
+            ctg_dialog.show();
+            ctg_dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    ctg_txt8.setText(ctg_dialog.getcategoryName());
+                    SharedPreferences pref = getSharedPreferences("category", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putString("c8_name", ctg_dialog.getcategoryName());
+                    editor.commit();
+                    ctg_btn_8.setVisibility(View.INVISIBLE);
+                    ctg_btn_8_8.setVisibility(View.VISIBLE);
+                }
+            });
+            ctg_dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                @Override
+                public void onCancel(DialogInterface dialog) {
 
-                    @Override
-                    public void onDismiss(DialogInterface dialog) {
-                        category_name3 = ctg_dialog.getcategoryName();
-                        ctg_txt3.setText(ctg_dialog.getcategoryName());
-                    }
-                });
-                ctg_dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                    @Override
-                    public void onCancel(DialogInterface dialog) {
-
-                    }
-                });
-            }
-        });
-        ctg_btn_4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ctg_dialog.setMessage("lightgreen");
-                ctg_dialog.show();
-                ctg_btn_4.setVisibility(View.INVISIBLE);
-                ctg_btn_4_4.setVisibility(View.VISIBLE);
-                ctg_btn_4_4.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(OZCategoryActivity.this, OZnowActivity.class);
-                        intent.putExtra("category_name1", ctg_txt1.getText());
-                        intent.putExtra("category_name2", ctg_txt2.getText());
-                        intent.putExtra("category_name3", ctg_txt3.getText());
-                        intent.putExtra("category_name4", ctg_txt4.getText());
-                        intent.putExtra("category_name5", ctg_txt5.getText());
-                        intent.putExtra("category_name6", ctg_txt6.getText());
-                        intent.putExtra("category_name7", ctg_txt7.getText());
-                        intent.putExtra("category_name8", ctg_txt8.getText());
-                        intent.putExtra("click_category", "lightgreen");
-                        startActivity(intent);
-                    }
-                });
-
-                ctg_dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-
-                    @Override
-                    public void onDismiss(DialogInterface dialog) {
-                        category_name4 = ctg_dialog.getcategoryName();
-                        ctg_txt4.setText(ctg_dialog.getcategoryName());
-                    }
-                });
-                ctg_dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                    @Override
-                    public void onCancel(DialogInterface dialog) {
-
-                    }
-                });
-            }
-        });
-        ctg_btn_5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ctg_dialog.setMessage("green");
-                ctg_dialog.show();
-                ctg_btn_5.setVisibility(View.INVISIBLE);
-                ctg_btn_5_5.setVisibility(View.VISIBLE);
-                ctg_btn_5_5.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(OZCategoryActivity.this, OZnowActivity.class);
-                        intent.putExtra("category_name1", ctg_txt1.getText());
-                        intent.putExtra("category_name2", ctg_txt2.getText());
-                        intent.putExtra("category_name3", ctg_txt3.getText());
-                        intent.putExtra("category_name4", ctg_txt4.getText());
-                        intent.putExtra("category_name5", ctg_txt5.getText());
-                        intent.putExtra("category_name6", ctg_txt6.getText());
-                        intent.putExtra("category_name7", ctg_txt7.getText());
-                        intent.putExtra("category_name8", ctg_txt8.getText());
-                        intent.putExtra("click_category", "green");
-                        startActivity(intent);
-                    }
-                });
-
-                ctg_dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-
-                    @Override
-                    public void onDismiss(DialogInterface dialog) {
-                        category_name5 = ctg_dialog.getcategoryName();
-                        ctg_txt5.setText(ctg_dialog.getcategoryName());
-                    }
-                });
-                ctg_dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                    @Override
-                    public void onCancel(DialogInterface dialog) {
-
-                    }
-                });
-            }
-        });
-        ctg_btn_6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ctg_dialog.setMessage("lightblue");
-                ctg_dialog.show();
-                ctg_btn_6.setVisibility(View.INVISIBLE);
-                ctg_btn_6_6.setVisibility(View.VISIBLE);
-                ctg_btn_6_6.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(OZCategoryActivity.this, OZnowActivity.class);
-                        intent.putExtra("category_name1", ctg_txt1.getText());
-                        intent.putExtra("category_name2", ctg_txt2.getText());
-                        intent.putExtra("category_name3", ctg_txt3.getText());
-                        intent.putExtra("category_name4", ctg_txt4.getText());
-                        intent.putExtra("category_name5", ctg_txt5.getText());
-                        intent.putExtra("category_name6", ctg_txt6.getText());
-                        intent.putExtra("category_name7", ctg_txt7.getText());
-                        intent.putExtra("category_name8", ctg_txt8.getText());
-                        intent.putExtra("click_category", "lightblue");
-                        startActivity(intent);
-                    }
-                });
-
-                ctg_dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-
-                    @Override
-                    public void onDismiss(DialogInterface dialog) {
-                        category_name6 = ctg_dialog.getcategoryName();
-                        ctg_txt6.setText(ctg_dialog.getcategoryName());
-                    }
-                });
-                ctg_dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                    @Override
-                    public void onCancel(DialogInterface dialog) {
-
-                    }
-                });
-            }
-        });
-        ctg_btn_7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ctg_dialog.setMessage("blue");
-                ctg_dialog.show();
-                ctg_btn_7.setVisibility(View.INVISIBLE);
-                ctg_btn_7_7.setVisibility(View.VISIBLE);
-                ctg_btn_7_7.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(OZCategoryActivity.this, OZnowActivity.class);
-                        intent.putExtra("category_name1", ctg_txt1.getText());
-                        intent.putExtra("category_name2", ctg_txt2.getText());
-                        intent.putExtra("category_name3", ctg_txt3.getText());
-                        intent.putExtra("category_name4", ctg_txt4.getText());
-                        intent.putExtra("category_name5", ctg_txt5.getText());
-                        intent.putExtra("category_name6", ctg_txt6.getText());
-                        intent.putExtra("category_name7", ctg_txt7.getText());
-                        intent.putExtra("category_name8", ctg_txt8.getText());
-                        intent.putExtra("click_category", "blue");
-                        startActivity(intent);
-                    }
-                });
-
-                ctg_dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-
-                    @Override
-                    public void onDismiss(DialogInterface dialog) {
-                        category_name7 = ctg_dialog.getcategoryName();
-                        ctg_txt7.setText(ctg_dialog.getcategoryName());
-                    }
-                });
-                ctg_dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                    @Override
-                    public void onCancel(DialogInterface dialog) {
-
-                    }
-                });
-            }
-        });
-        ctg_btn_8.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ctg_dialog.setMessage("purple");
-                ctg_dialog.show();
-                ctg_btn_8.setVisibility(View.INVISIBLE);
-                ctg_btn_8_8.setVisibility(View.VISIBLE);
-                ctg_btn_8_8.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(OZCategoryActivity.this, OZnowActivity.class);
-                        intent.putExtra("category_name1", ctg_txt1.getText());
-                        intent.putExtra("category_name2", ctg_txt2.getText());
-                        intent.putExtra("category_name3", ctg_txt3.getText());
-                        intent.putExtra("category_name4", ctg_txt4.getText());
-                        intent.putExtra("category_name5", ctg_txt5.getText());
-                        intent.putExtra("category_name6", ctg_txt6.getText());
-                        intent.putExtra("category_name7", ctg_txt7.getText());
-                        intent.putExtra("category_name8", ctg_txt8.getText());
-                        intent.putExtra("click_category", "purple");
-                        startActivity(intent);
-                    }
-                });
-
-                ctg_dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-
-                    @Override
-                    public void onDismiss(DialogInterface dialog) {
-                        category_name8 = ctg_dialog.getcategoryName();
-                        ctg_txt8.setText(ctg_dialog.getcategoryName());
-                    }
-                });
-                ctg_dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                    @Override
-                    public void onCancel(DialogInterface dialog) {
-
-                    }
-                });
-            }
-        });
+                }
+            });
+        } else if (v.getId() == R.id.ctg_btn8_8) {
+            Intent intent = new Intent(this, OZnowActivity.class);
+            intent.putExtra("color", "purple");
+            startActivity(intent);
+            finish();
+        }
     }
 }
 

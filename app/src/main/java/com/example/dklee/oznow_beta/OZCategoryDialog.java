@@ -32,28 +32,20 @@ public class OZCategoryDialog extends Dialog implements View.OnClickListener {
         imageView=(ImageView)findViewById(R.id.btn_img);
         if(getMessage()=="red"){
             imageView.setBackgroundResource(R.drawable.redbtn);
-            setMessage("");
         }else if(getMessage()=="orange"){
             imageView.setBackgroundResource(R.drawable.orangebtn);
-            setMessage("");
         }else if(getMessage()=="yellow"){
             imageView.setBackgroundResource(R.drawable.yellowbtn);
-            setMessage("");
         }else if(getMessage()=="lightblue"){
             imageView.setBackgroundResource(R.drawable.lightbluebtn);
-            setMessage("");
         }else if(getMessage()=="blue"){
             imageView.setBackgroundResource(R.drawable.bluebtn);
-            setMessage("");
         }else if(getMessage()=="lightgreen"){
             imageView.setBackgroundResource(R.drawable.lightgreenbtn);
-            setMessage("");
         }else if(getMessage()=="green"){
             imageView.setBackgroundResource(R.drawable.greenbtn);
-            setMessage("");
         }else if(getMessage()=="purple"){
             imageView.setBackgroundResource(R.drawable.purplebtn);
-            setMessage("");
         }
         dialog_edittxt = (EditText)findViewById(R.id.dialog_edittxt);
         dialog_ok = (Button)findViewById(R.id.dialog_ok);
@@ -77,6 +69,7 @@ public class OZCategoryDialog extends Dialog implements View.OnClickListener {
     public void onClick(View v) {
         if( v.getId()== R.id.dialog_ok){
             dialog_category = dialog_edittxt.getText().toString();
+            imageView.setBackgroundResource(0);
             dismiss();
         }
         else if(v==dialog_cancel)
