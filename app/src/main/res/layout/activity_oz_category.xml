@@ -266,7 +266,21 @@
         android:textSize="15dp"
        />
 
-
-
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_update"
+        android:text="question"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/center"
+        android:layout_toStartOf="@+id/center" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_close"
+        android:text="닫기"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/ctg_txt4"
+        android:layout_toEndOf="@+id/ctg_txt4" />
 
 </RelativeLayout>

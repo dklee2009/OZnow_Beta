@@ -47,9 +47,7 @@ public class OZCategoryActivity extends Activity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_oz_category);
         Log.d("OZCategory", "meg onCreate");
-        //이거 언제 왜ㅆ는 거야? 동근오빠 ㅋㅋㅋㅋ
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-        //카테고리 저장정보를 가져오는 SharedPreference
         SharedPreferences pref = getSharedPreferences("category", MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
         ctg_txt1 = (TextView) findViewById(R.id.ctg_txt1);
@@ -77,7 +75,23 @@ public class OZCategoryActivity extends Activity implements View.OnClickListener
         ctg_btn_7_7 = (Button) findViewById(R.id.ctg_btn7_7);
         ctg_btn_8_8 = (Button) findViewById(R.id.ctg_btn8_8);
         ctg_dialog = new OZCategoryDialog(OZCategoryActivity.this);
-        //SharedPreference로 부터 저장된 카테고리 이름을 불러온 없을시 빈칸으로
+        Button btn_close=(Button)findViewById(R.id.btn_close);
+        btn_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(OZCategoryActivity.this, AllListActivity.class);
+                startActivity(intent);
+            }
+        });
+        Button btn_update=(Button)findViewById(R.id.btn_update);
+        btn_update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ctg_btn_1.setVisibility(View.VISIBLE);
+                ctg_btn_1.setText("up");
+                ctg_btn_1.setOnClickListener(this);
+            }
+        });
         String c1_name = pref.getString("c1_name", "");
         String c2_name = pref.getString("c2_name", "");
         String c3_name = pref.getString("c3_name", "");
@@ -86,7 +100,6 @@ public class OZCategoryActivity extends Activity implements View.OnClickListener
         String c6_name = pref.getString("c6_name", "");
         String c7_name = pref.getString("c7_name", "");
         String c8_name = pref.getString("c8_name", "");
-        //카테고리 이름이 빈칸인지 아닌지를 비교
         if (!c1_name.equals("")) {
             ctg_txt1.setText(c1_name);
             ctg_btn_1.setVisibility(View.INVISIBLE);
@@ -130,7 +143,6 @@ public class OZCategoryActivity extends Activity implements View.OnClickListener
             ctg_btn_8.setVisibility(View.INVISIBLE);
             ctg_btn_8_8.setVisibility(View.VISIBLE);
         }
-        //각 버튼의 리스너
         ctg_btn_1.setOnClickListener(this);
         ctg_btn_1_1.setOnClickListener(this);
         ctg_btn_2.setOnClickListener(this);
@@ -158,7 +170,6 @@ public class OZCategoryActivity extends Activity implements View.OnClickListener
                 @Override
                 public void onDismiss(DialogInterface dialog) {
                     ctg_txt1.setText(ctg_dialog.getcategoryName());
-                    //카테고리 이름은 sharedPreference에 저장
                     SharedPreferences pref = getSharedPreferences("category", MODE_PRIVATE);
                     SharedPreferences.Editor editor = pref.edit();
                     editor.putString("c1_name", ctg_dialog.getcategoryName());

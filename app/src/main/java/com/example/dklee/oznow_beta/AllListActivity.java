@@ -1,18 +1,23 @@
 package com.example.dklee.oznow_beta;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -23,19 +28,61 @@ import java.util.Calendar;
 /**
  * Created by kyounghee on 2015-08-12.
  */
-public class AllListActivity extends Activity implements AdapterView.OnItemClickListener {
+public class AllListActivity extends ActionBarActivity implements AdapterView.OnItemClickListener {
     private ListView listView;
     private ContentDBHelper contentDBHelper;
-    private LinearLayout box;
+    private DrawerLayout mypage_drawer;
+    private ActionBarDrawerToggle mypage_drawer_toggle;
+    String [] drawer_str={"mypage","setup","help"};
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        mypage_drawer_toggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        mypage_drawer_toggle.onConfigurationChanged(newConfig);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(mypage_drawer_toggle.onOptionsItemSelected(item))
+            return true;
+        return super.onOptionsItemSelected(item);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_oz_main);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Log.d("AllList", "meg onCreate");
         contentDBHelper=new ContentDBHelper(this);
         listView = (ListView) findViewById(R.id.allList);
         ImageButton categoryBtn = (ImageButton) findViewById(R.id.btn_category);
         TextView txt_today=(TextView)findViewById(R.id.txt_today);
+        mypage_drawer=(DrawerLayout)findViewById(R.id.drawerlayout);
+        ListView list=(ListView)findViewById(R.id.drawer);
+        ArrayAdapter<String> arrayAdapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,drawer_str);
+        list.setAdapter(arrayAdapter);
+        mypage_drawer_toggle=new ActionBarDrawerToggle(this, mypage_drawer, R.string.close, R.string.open){
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+                invalidateOptionsMenu();
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                invalidateOptionsMenu();
+            }
+        };
+        mypage_drawer.setDrawerListener(mypage_drawer_toggle);
+        //mypage_drawer.closeDrawer(listView);
         //오늘의 날짜 표시
         Calendar calendar=Calendar.getInstance();
         int month=calendar.get(Calendar.MONTH);
@@ -66,7 +113,6 @@ public class AllListActivity extends Activity implements AdapterView.OnItemClick
                 break;
         }
         txt_today.setText(month+" . "+date+" . "+day);
-        box = (LinearLayout)findViewById(R.id.ctg_box);
         categoryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,7 +170,11 @@ public class AllListActivity extends Activity implements AdapterView.OnItemClick
             }
             Button del_btn=(Button)v.findViewById(R.id.Button_delete);
             del_btn.setOnClickListener(this);
-            box = (LinearLayout)v.findViewById(R.id.ctg_box);
+            CheckBox listItem_check=(CheckBox)v.findViewById(R.id.listItem_check);
+            if(getItem(position).getKind().equals("note")){
+                listItem_check.setVisibility(View.INVISIBLE);
+            }
+            LinearLayout box = (LinearLayout)v.findViewById(R.id.ctg_box);
             if(getItem(position).getC_color().equals("red")){
                 box.setBackgroundResource(R.drawable.red_bar);
             }else if(getItem(position).getC_color().equals("orange")){
@@ -147,7 +197,6 @@ public class AllListActivity extends Activity implements AdapterView.OnItemClick
             tv.setText(getItem(position).getContent());
             tv.setOnClickListener(this);
             return v;
-
         }
         @Override
         public ContentVO getItem(int position) {

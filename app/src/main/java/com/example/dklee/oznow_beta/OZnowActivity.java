@@ -1,6 +1,8 @@
 package com.example.dklee.oznow_beta;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
@@ -110,7 +112,6 @@ public class OZnowActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         String content=contentEt.getText().toString();
         String bookmark="no";
-        Log.d("kind", kind);
         String sql="insert into ozContent(content, kind, bookmark, c_name, c_color) values(?,?,?,?,?)";
         SQLiteDatabase db=contentDBHelper.getWritableDatabase();
         db.execSQL(sql, new String[] {content, kind, bookmark, category_name, category_color});

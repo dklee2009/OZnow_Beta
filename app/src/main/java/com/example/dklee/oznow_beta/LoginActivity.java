@@ -2,6 +2,7 @@ package com.example.dklee.oznow_beta;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -25,6 +26,8 @@ public class LoginActivity extends Activity {
             public void onClick(View v) {
                 Intent intent=new Intent(LoginActivity.this, AllListActivity.class);
                 startActivity(intent);
+                SharedPreferences pref = getSharedPreferences("category", MODE_PRIVATE);
+                SharedPreferences.Editor editor = pref.edit();
                 finish();
             }
         });
