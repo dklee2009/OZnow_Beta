@@ -75,15 +75,15 @@ public class OZCategoryActivity extends Activity implements View.OnClickListener
         ctg_btn_7_7 = (Button) findViewById(R.id.ctg_btn7_7);
         ctg_btn_8_8 = (Button) findViewById(R.id.ctg_btn8_8);
         ctg_dialog = new OZCategoryDialog(OZCategoryActivity.this);
-        Button btn_close=(Button)findViewById(R.id.btn_close);
+        Button btn_close = (Button) findViewById(R.id.btn_close);
         btn_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(OZCategoryActivity.this, AllListActivity.class);
+                Intent intent = new Intent(OZCategoryActivity.this, AllListActivity.class);
                 startActivity(intent);
             }
         });
-        Button btn_update=(Button)findViewById(R.id.btn_update);
+        Button btn_update = (Button) findViewById(R.id.btn_update);
         btn_update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -165,6 +165,7 @@ public class OZCategoryActivity extends Activity implements View.OnClickListener
     public void onClick(View v) {
         if (v.getId() == R.id.ctg_btn1) {
             ctg_dialog.setMessage("red");
+            ctg_dialog.onCreate();
             ctg_dialog.show();
             ctg_dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
@@ -190,6 +191,7 @@ public class OZCategoryActivity extends Activity implements View.OnClickListener
             finish();
         } else if (v.getId() == R.id.ctg_btn2) {
             ctg_dialog.setMessage("orange");
+            ctg_dialog.onCreate();
             ctg_dialog.show();
             ctg_dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
@@ -216,6 +218,7 @@ public class OZCategoryActivity extends Activity implements View.OnClickListener
             finish();
         } else if (v.getId() == R.id.ctg_btn3) {
             ctg_dialog.setMessage("yellow");
+            ctg_dialog.onCreate();
             ctg_dialog.show();
             ctg_dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
@@ -242,6 +245,7 @@ public class OZCategoryActivity extends Activity implements View.OnClickListener
             finish();
         } else if (v.getId() == R.id.ctg_btn4) {
             ctg_dialog.setMessage("lightgreen");
+            ctg_dialog.onCreate();
             ctg_dialog.show();
             ctg_dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
@@ -268,6 +272,7 @@ public class OZCategoryActivity extends Activity implements View.OnClickListener
             finish();
         } else if (v.getId() == R.id.ctg_btn5) {
             ctg_dialog.setMessage("green");
+            ctg_dialog.onCreate();
             ctg_dialog.show();
             ctg_dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
@@ -294,6 +299,7 @@ public class OZCategoryActivity extends Activity implements View.OnClickListener
             finish();
         } else if (v.getId() == R.id.ctg_btn6) {
             ctg_dialog.setMessage("lightblue");
+            ctg_dialog.onCreate();
             ctg_dialog.show();
             ctg_dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
@@ -320,6 +326,7 @@ public class OZCategoryActivity extends Activity implements View.OnClickListener
             finish();
         } else if (v.getId() == R.id.ctg_btn7) {
             ctg_dialog.setMessage("blue");
+            ctg_dialog.onCreate();
             ctg_dialog.show();
             ctg_dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
@@ -346,6 +353,7 @@ public class OZCategoryActivity extends Activity implements View.OnClickListener
             finish();
         } else if (v.getId() == R.id.ctg_btn8) {
             ctg_dialog.setMessage("purple");
+            ctg_dialog.onCreate();
             ctg_dialog.show();
             ctg_dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
