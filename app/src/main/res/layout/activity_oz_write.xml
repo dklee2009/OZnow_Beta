@@ -1,47 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:orientation="horizontal"
+    <TabHost
+        android:id="@+id/tabhost"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="fill_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android">
 
-
-        <Button
+        <TabWidget
+            android:id="@android:id/tabs"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Todo"
-            android:id="@+id/button_todoWrite" />
+            android:layout_height="wrap_content" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Note"
-            android:id="@+id/button_noteWrite" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="save"
-            android:id="@+id/button_save" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/dynamicArea">
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/checkbox_todo"/>
-           <EditText
-                android:layout_width="fill_parent"
+            <RelativeLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText_todo"
-               android:hint="todo를 입력해주세요" />
+                android:layout_gravity="right">
+
+                <Button
+                    android:id="@+id/btn_save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="save"/>
+            </RelativeLayout>
+        <FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="100px">
+            <ScrollView
+                android:id="@+id/tab1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tb_category">
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/cb_todo"/>
+                    <EditText
+                        android:id="@+id/et_todo"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/write_hint" />
+                </TableRow>
+            </ScrollView>
+
+                <EditText
+                    android:id="@+id/tab2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/write_hint" />
+
+        </FrameLayout>
+    </TabHost>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center">
+
+        <Button
+            android:id="@+id/btn_category_modi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="category"></Button>
+
+        <Button
+            android:id="@+id/btn_hashtag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="해시태그"></Button>
+
+        <Button
+            android:id="@+id/btn_subtask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="서브태스크"></Button>
+
+        <Button
+            android:id="@+id/btn_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="타임"></Button>
     </LinearLayout>
 </LinearLayout>

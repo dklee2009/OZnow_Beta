@@ -33,7 +33,7 @@ public class AllListActivity extends ActionBarActivity implements AdapterView.On
     private ContentDBHelper contentDBHelper;
     private DrawerLayout mypage_drawer;
     private ActionBarDrawerToggle mypage_drawer_toggle;
-    String [] drawer_str={"mypage","setup","help"};
+    String [] drawer_str={"해시태그","휴지통"};
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
