@@ -5,44 +5,51 @@
     android:orientation="vertical">
 
     <TabHost
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/tabhost"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        xmlns:android="http://schemas.android.com/apk/res/android">
+        android:layout_height="fill_parent">
 
         <TabWidget
             android:id="@android:id/tabs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-            <RelativeLayout
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right">
+
+            <Button
+                android:id="@+id/btn_save"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right">
+                android:text="save" />
 
-                <Button
-                    android:id="@+id/btn_save"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="save"/>
-            </RelativeLayout>
+        </RelativeLayout>
+
         <FrameLayout
             android:id="@android:id/tabcontent"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:paddingTop="100px">
+
             <ScrollView
                 android:id="@+id/tab1"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content">
+
                 <TableRow
+                    android:id="@+id/tb_category_todo"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/tb_category">
+                    android:paddingLeft="20dp">
+
                     <CheckBox
+                        android:id="@+id/cb_todo"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/cb_todo"/>
+                        android:layout_height="wrap_content" />
+
                     <EditText
                         android:id="@+id/et_todo"
                         android:layout_width="fill_parent"
@@ -50,43 +57,54 @@
                         android:hint="@string/write_hint" />
                 </TableRow>
             </ScrollView>
-
-                <EditText
-                    android:id="@+id/tab2"
+            <ScrollView
+                android:id="@+id/tab2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+                <TableRow
+                    android:id="@+id/tb_category_note"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/write_hint" />
-
+                    android:paddingLeft="20dp">
+                    <EditText
+                        android:id="@+id/et_note"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/write_hint" />
+                </TableRow>
+            </ScrollView>
         </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="200dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_category_modi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="category" />
+
+            <Button
+                android:id="@+id/btn_hashtag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="해시태그" />
+
+            <Button
+                android:id="@+id/btn_subtask"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="서브태스크" />
+
+            <Button
+                android:id="@+id/btn_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="타임" />
+        </LinearLayout>
     </TabHost>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center">
-
-        <Button
-            android:id="@+id/btn_category_modi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="category"></Button>
-
-        <Button
-            android:id="@+id/btn_hashtag"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="해시태그"></Button>
-
-        <Button
-            android:id="@+id/btn_subtask"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="서브태스크"></Button>
-
-        <Button
-            android:id="@+id/btn_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="타임"></Button>
-    </LinearLayout>
 </LinearLayout>
