@@ -2,9 +2,11 @@ package com.example.dklee.oznow_beta;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -168,11 +170,12 @@ public class AllListActivity extends ActionBarActivity implements AdapterView.On
                 LayoutInflater layoutInflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 v=layoutInflater.inflate(R.layout.row_oz_main_item, null);
             }
-            Button del_btn=(Button)v.findViewById(R.id.Button_delete);
-            del_btn.setOnClickListener(this);
-            CheckBox listItem_check=(CheckBox)v.findViewById(R.id.listItem_check);
+            Button btn_del=(Button)v.findViewById(R.id.Button_delete);
+            CheckBox cb_listitem=(CheckBox)v.findViewById(R.id.listItem_check);
+            TextView tv_content=(TextView)v.findViewById(R.id.TextView_content);
+            btn_del.setOnClickListener(this);
             if(getItem(position).getKind().equals("note")){
-                listItem_check.setVisibility(View.INVISIBLE);
+                cb_listitem.setVisibility(View.INVISIBLE);
             }
             LinearLayout box = (LinearLayout)v.findViewById(R.id.ctg_box);
             if(getItem(position).getC_color().equals("red")){
@@ -192,10 +195,13 @@ public class AllListActivity extends ActionBarActivity implements AdapterView.On
             }else if(getItem(position).getC_color().equals("purple")){
                 box.setBackgroundResource(R.drawable.purple_bar);
             }
-            TextView tv=(TextView)v.findViewById(R.id.TextView_content);
+
             //textView hiddendata없나?
-            tv.setText(getItem(position).getContent());
-            tv.setOnClickListener(this);
+            tv_content.setText(getItem(position).getContent());
+            tv_content.setOnClickListener(this);
+            if(cb_listitem.isChecked()==true){
+                tv_content.setTextColor(Color.YELLOW);
+            }
             return v;
         }
         @Override
@@ -220,23 +226,6 @@ public class AllListActivity extends ActionBarActivity implements AdapterView.On
                 Intent intent=new Intent(AllListActivity.this, AllListActivity.class);
                 startActivity(intent);
             }
-            /*
-            if(viewId==R.id.Button_bookmark){
-                TextView tv=(TextView)findViewById(R.id.TextView_content);
-                content=tv.getText().toString();
-                SQLiteDatabase db = contentDBHelper.getWritableDatabase();
-                String sql = "update ozContent set bookmark='"+"favorite"+"' where content='"+content+"'";
-                db.execSQL(sql);
-            }
-            if(viewId==R.id.Button_update){
-                //이게 todo인지 note인지 구분이 없다... 어떻게하지?
-                TextView tv=(TextView)findViewById(R.id.TextView_content);
-                content=tv.getText().toString();
-                Intent intent=new Intent(AllListActivity.this, OZnowActivity.class);
-                intent.putExtra("content",content);
-                startActivity(intent);
-
-            }*/
         }
     }
 }

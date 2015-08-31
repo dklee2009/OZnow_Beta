@@ -9,9 +9,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ActionMenuView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TabHost;
 import android.widget.TableRow;
 
@@ -31,16 +34,16 @@ public class OZnowActivity extends Activity {
         et_note=(EditText)findViewById(R.id.et_note);
         et_todo=(EditText)findViewById(R.id.et_todo);
         // todo checkbox 정보를 sharedPreference에 담음
-        SharedPreferences check_pref = getSharedPreferences("checkbox", MODE_PRIVATE);
+      /*  SharedPreferences check_pref = getSharedPreferences("checkbox", MODE_PRIVATE);
         SharedPreferences.Editor check_editor = check_pref.edit();
         Boolean checked=false;
         CheckBox cb_todo=(CheckBox)findViewById(R.id.cb_todo);
         checked=cb_todo.isChecked();
         check_editor.putBoolean("checkornot", checked);
-        check_editor.commit();
+        check_editor.commit();*/
         //tab 정보를 불러옴
         TabHost tab=(TabHost)findViewById(R.id.tabhost);
-        tab.setup();;
+        tab.setup();
         TabHost.TabSpec spec=tab.newTabSpec("tag1");
         spec.setContent(R.id.tab1);
         spec.setIndicator("To do");
@@ -51,7 +54,7 @@ public class OZnowActivity extends Activity {
         tab.addTab(spec2);
         tab.setCurrentTab(0);
         contentDBHelper=new ContentDBHelper(this);
-        TableRow tb_category_todo=(TableRow)findViewById(R.id.tb_category_todo);
+        final TableRow tb_category_todo=(TableRow)findViewById(R.id.tb_category_todo);
         TableRow tb_category_note=(TableRow)findViewById(R.id.tb_category_note);
         kind="todo";
         Intent intent=getIntent();
@@ -59,50 +62,42 @@ public class OZnowActivity extends Activity {
         if(category_color.equals("red")){
             tb_category_todo.setBackgroundResource(R.drawable.red_bar);
             tb_category_note.setBackgroundResource(R.drawable.red_bar);
-            SharedPreferences pref=getSharedPreferences("category",MODE_PRIVATE);
-            SharedPreferences.Editor editor=pref.edit();
+            SharedPreferences pref=getSharedPreferences("category", MODE_PRIVATE);
             category_name=pref.getString("c1_name", "");
         }else if(category_color.equals("orange")){
             tb_category_todo.setBackgroundResource(R.drawable.orange_bar);
             tb_category_note.setBackgroundResource(R.drawable.orange_bar);
-            SharedPreferences pref=getSharedPreferences("category",MODE_PRIVATE);
-            SharedPreferences.Editor editor=pref.edit();
+            SharedPreferences pref=getSharedPreferences("category", MODE_PRIVATE);
             category_name=pref.getString("c2_name", "");
         }else if(category_color.equals("yellow")){
             tb_category_todo.setBackgroundResource(R.drawable.yellow_bar);
             tb_category_note.setBackgroundResource(R.drawable.yellow_bar);
-            SharedPreferences pref=getSharedPreferences("category",MODE_PRIVATE);
-            SharedPreferences.Editor editor=pref.edit();
+            SharedPreferences pref=getSharedPreferences("category", MODE_PRIVATE);
             category_name=pref.getString("c3_name", "");
         }else if(category_color.equals("lightgreen")){
             tb_category_todo.setBackgroundResource(R.drawable.lime_bar);
             tb_category_note.setBackgroundResource(R.drawable.lime_bar);
-            SharedPreferences pref=getSharedPreferences("category",MODE_PRIVATE);
-            SharedPreferences.Editor editor=pref.edit();
+            SharedPreferences pref=getSharedPreferences("category", MODE_PRIVATE);
             category_name=pref.getString("c4_name", "");
         }else if(category_color.equals("green")){
             tb_category_todo.setBackgroundResource(R.drawable.green_bar);
             tb_category_note.setBackgroundResource(R.drawable.green_bar);
-            SharedPreferences pref=getSharedPreferences("category",MODE_PRIVATE);
-            SharedPreferences.Editor editor=pref.edit();
+            SharedPreferences pref=getSharedPreferences("category", MODE_PRIVATE);
             category_name=pref.getString("c5_name", "");
         }else if(category_color.equals("lightblue")){
             tb_category_todo.setBackgroundResource(R.drawable.skyblue_bar);
             tb_category_note.setBackgroundResource(R.drawable.skyblue_bar);
-            SharedPreferences pref=getSharedPreferences("category",MODE_PRIVATE);
-            SharedPreferences.Editor editor=pref.edit();
+            SharedPreferences pref=getSharedPreferences("category", MODE_PRIVATE);
             category_name=pref.getString("c6_name", "");
         }else if(category_color.equals("blue")){
             tb_category_todo.setBackgroundResource(R.drawable.blue_bar);
             tb_category_note.setBackgroundResource(R.drawable.blue_bar);
-            SharedPreferences pref=getSharedPreferences("category",MODE_PRIVATE);
-            SharedPreferences.Editor editor=pref.edit();
+            SharedPreferences pref=getSharedPreferences("category", MODE_PRIVATE);
             category_name=pref.getString("c7_name", "");
         }else if(category_color.equals("purple")){
             tb_category_todo.setBackgroundResource(R.drawable.purple_bar);
             tb_category_note.setBackgroundResource(R.drawable.purple_bar);
-            SharedPreferences pref=getSharedPreferences("category",MODE_PRIVATE);
-            SharedPreferences.Editor editor=pref.edit();
+            SharedPreferences pref=getSharedPreferences("category", MODE_PRIVATE);
             category_name=pref.getString("c8_name", "");
         }
         Button btn_save=(Button)findViewById(R.id.btn_save);
@@ -130,6 +125,20 @@ public class OZnowActivity extends Activity {
             public void onClick(View v) {
                 Intent intent=new Intent(OZnowActivity.this, OZCategoryActivity.class);
                 startActivity(intent);
+            }
+        });
+        Button btn_subtask=(Button)findViewById(R.id.btn_subtask);
+        btn_subtask.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CheckBox cb_subtask=new CheckBox(OZnowActivity.this);
+                LinearLayout.LayoutParams layoutParams=new LinearLayout.LayoutParams(200, 200);
+                cb_subtask.setLayoutParams(layoutParams);
+                //cb_subtask.setPadding(60,200,0,0);
+                EditText et_subtask=new EditText(OZnowActivity.this);
+                //et_subtask.setPadding(80,200,0,0);
+                tb_category_todo.addView(cb_subtask);
+                tb_category_todo.addView(et_subtask);
             }
         });
     }
