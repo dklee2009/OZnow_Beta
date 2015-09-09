@@ -10,6 +10,9 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -17,15 +20,15 @@ import android.widget.TextView;
  * Created by DKLEE on 2015-08-17.
  */
 public class OZCategoryActivity extends Activity implements View.OnClickListener {
-    private Button ctg_btn_1;
-    private Button ctg_btn_2;
+    public Button ctg_btn_1;
+    public Button ctg_btn_2;
     private Button ctg_btn_3;
     private Button ctg_btn_4;
     private Button ctg_btn_5;
     private Button ctg_btn_6;
     private Button ctg_btn_7;
     private Button ctg_btn_8;
-    private Button ctg_btn_1_1;
+    public Button ctg_btn_1_1;
     private Button ctg_btn_2_2;
     private Button ctg_btn_3_3;
     private Button ctg_btn_4_4;
@@ -43,10 +46,23 @@ public class OZCategoryActivity extends Activity implements View.OnClickListener
     private TextView ctg_txt8;
     private OZCategoryDialog ctg_dialog;
 
+    private Animation btn_an01;
+    private Animation btn_an02;
+    private Animation btn_an03;
+    private Animation btn_an04;
+    private Animation btn_an05;
+    private Animation btn_an06;
+    private Animation btn_an07;
+    private Animation btn_an08;
+
+
+
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_oz_category);
         Log.d("OZCategory", "meg onCreate");
+
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         SharedPreferences pref = getSharedPreferences("category", MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
@@ -76,11 +92,40 @@ public class OZCategoryActivity extends Activity implements View.OnClickListener
         ctg_btn_8_8 = (Button) findViewById(R.id.ctg_btn8_8);
         ctg_dialog = new OZCategoryDialog(OZCategoryActivity.this);
         Button btn_close = (Button) findViewById(R.id.btn_close);
+
+        btn_an01 = AnimationUtils.loadAnimation(this, R.anim.ctg_btn_anim);
+        btn_an02 = AnimationUtils.loadAnimation(this, R.anim.ctg_btn_anim2);
+        btn_an03 = AnimationUtils.loadAnimation(this, R.anim.ctg_btn_anim3);
+        btn_an04 = AnimationUtils.loadAnimation(this, R.anim.ctg_btn_anim4);
+        btn_an05 = AnimationUtils.loadAnimation(this, R.anim.ctg_btn_anim5);
+        btn_an06 = AnimationUtils.loadAnimation(this, R.anim.ctg_btn_anim6);
+        btn_an07 = AnimationUtils.loadAnimation(this, R.anim.ctg_btn_anim7);
+        btn_an08 = AnimationUtils.loadAnimation(this, R.anim.ctg_btn_anim8);
+
+        ctg_btn_1.setAnimation(btn_an01);
+        ctg_btn_2.setAnimation(btn_an02);
+        ctg_btn_3.setAnimation(btn_an03);
+        ctg_btn_4.setAnimation(btn_an04);
+        ctg_btn_5.setAnimation(btn_an05);
+        ctg_btn_6.setAnimation(btn_an06);
+        ctg_btn_7.setAnimation(btn_an07);
+        ctg_btn_8.setAnimation(btn_an08);
+
+        ctg_btn_1_1.setAnimation(btn_an01);
+        ctg_btn_2_2.setAnimation(btn_an02);
+        ctg_btn_3_3.setAnimation(btn_an03);
+        ctg_btn_4_4.setAnimation(btn_an04);
+        ctg_btn_5_5.setAnimation(btn_an05);
+        ctg_btn_6_6.setAnimation(btn_an06);
+        ctg_btn_7_7.setAnimation(btn_an07);
+        ctg_btn_8_8.setAnimation(btn_an08);
+
         btn_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(OZCategoryActivity.this, AllListActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
         Button btn_update = (Button) findViewById(R.id.btn_update);
@@ -181,7 +226,7 @@ public class OZCategoryActivity extends Activity implements View.OnClickListener
             });
             ctg_dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                 @Override
-                public void onCancel(DialogInterface dialog) {
+                public void onCancel(DialogInterface dialog) {ctg_btn_1.setVisibility(View.VISIBLE);
                 }
             });
         } else if (v.getId() == R.id.ctg_btn1_1) {

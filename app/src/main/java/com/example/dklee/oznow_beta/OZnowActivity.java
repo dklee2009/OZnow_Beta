@@ -117,6 +117,7 @@ public class OZnowActivity extends Activity {
                 // 자장 후 전체 리스트로 돌아가도록 설정
                 Intent intent=new Intent(OZnowActivity.this, AllListActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
         Button btn_category_modi=(Button)findViewById(R.id.btn_category_modi);
@@ -125,6 +126,7 @@ public class OZnowActivity extends Activity {
             public void onClick(View v) {
                 Intent intent=new Intent(OZnowActivity.this, OZCategoryActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
         Button btn_subtask=(Button)findViewById(R.id.btn_subtask);

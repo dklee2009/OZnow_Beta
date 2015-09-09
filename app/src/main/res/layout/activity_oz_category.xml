@@ -84,7 +84,7 @@
         android:layout_toRightOf="@+id/ctg_txt1"
         android:layout_toEndOf="@+id/ctg_txt1"
         android:background="@drawable/yellowbtn"/>
-    <Button
+     <Button
         android:id="@+id/ctg_btn3_3"
         android:layout_width="60dp"
         android:layout_height="60dp"
@@ -98,12 +98,12 @@
         android:background="@drawable/yellowbtn"/>
     <TextView
         android:id="@+id/ctg_txt3"
-        android:layout_width="80dp"
+        android:layout_width="60dp"
         android:layout_height="20dp"
         android:layout_below="@+id/ctg_btn3"
         android:layout_alignLeft="@+id/ctg_btn3"
         android:layout_alignStart="@+id/ctg_btn3"
-        android:gravity="left"
+        android:gravity="center"
         android:textColor="#ffffff"
         android:textSize="15dp"/>
     /*버튼4*/
@@ -227,12 +227,12 @@
         android:background="@drawable/bluebtn"/>
     <TextView
         android:id="@+id/ctg_txt7"
-        android:layout_width="80dp"
+        android:layout_width="60dp"
         android:layout_height="20dp"
         android:layout_below="@+id/ctg_btn7"
         android:layout_alignRight="@+id/ctg_btn7"
         android:layout_alignEnd="@+id/ctg_btn7"
-        android:gravity="right"
+        android:gravity="center"
         android:textColor="#ffffff"
         android:textSize="15dp"/>
     /*버튼8*/
@@ -270,7 +270,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btn_update"
-        android:text="question"
+        android:background="@drawable/btn_ctg"
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@+id/center"
         android:layout_toStartOf="@+id/center" />
@@ -278,7 +278,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btn_close"
-        android:text="닫기"
+        android:background="@drawable/btn_close"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/ctg_txt4"
         android:layout_toEndOf="@+id/ctg_txt4" />

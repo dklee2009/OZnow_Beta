@@ -16,6 +16,8 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -35,6 +37,7 @@ public class AllListActivity extends ActionBarActivity implements AdapterView.On
     private ContentDBHelper contentDBHelper;
     private DrawerLayout mypage_drawer;
     private ActionBarDrawerToggle mypage_drawer_toggle;
+
     String [] drawer_str={"해시태그","휴지통"};
 
     @Override

@@ -73,7 +73,9 @@ public class OZCategoryDialog extends Dialog implements View.OnClickListener {
         if (v.getId() == R.id.dialog_ok) {
             dialog_category = dialog_edittxt.getText().toString();
             dismiss();
-        } else if (v == dialog_cancel)
+
+        }
+        else if (v == dialog_cancel)
             cancel();
     }
 }
