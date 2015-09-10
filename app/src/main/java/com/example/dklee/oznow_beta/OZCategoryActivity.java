@@ -54,7 +54,7 @@ public class OZCategoryActivity extends Activity implements View.OnClickListener
     private Animation btn_an06;
     private Animation btn_an07;
     private Animation btn_an08;
-
+    private Animation btn_fade;
 
 
     public void onCreate(Bundle savedInstanceState) {
@@ -101,6 +101,7 @@ public class OZCategoryActivity extends Activity implements View.OnClickListener
         btn_an06 = AnimationUtils.loadAnimation(this, R.anim.ctg_btn_anim6);
         btn_an07 = AnimationUtils.loadAnimation(this, R.anim.ctg_btn_anim7);
         btn_an08 = AnimationUtils.loadAnimation(this, R.anim.ctg_btn_anim8);
+        btn_fade = AnimationUtils.loadAnimation(this, R.anim.btn_fade_in);
 
         ctg_btn_1.setAnimation(btn_an01);
         ctg_btn_2.setAnimation(btn_an02);
@@ -110,7 +111,6 @@ public class OZCategoryActivity extends Activity implements View.OnClickListener
         ctg_btn_6.setAnimation(btn_an06);
         ctg_btn_7.setAnimation(btn_an07);
         ctg_btn_8.setAnimation(btn_an08);
-
         ctg_btn_1_1.setAnimation(btn_an01);
         ctg_btn_2_2.setAnimation(btn_an02);
         ctg_btn_3_3.setAnimation(btn_an03);
@@ -119,6 +119,16 @@ public class OZCategoryActivity extends Activity implements View.OnClickListener
         ctg_btn_6_6.setAnimation(btn_an06);
         ctg_btn_7_7.setAnimation(btn_an07);
         ctg_btn_8_8.setAnimation(btn_an08);
+        ctg_txt1.setAnimation(btn_fade);
+        ctg_txt2.setAnimation(btn_fade);
+        ctg_txt3.setAnimation(btn_fade);
+        ctg_txt4.setAnimation(btn_fade);
+        ctg_txt5.setAnimation(btn_fade);
+        ctg_txt6.setAnimation(btn_fade);
+        ctg_txt7.setAnimation(btn_fade);
+        ctg_txt8.setAnimation(btn_fade);
+
+
 
         btn_close.setOnClickListener(new View.OnClickListener() {
             @Override
