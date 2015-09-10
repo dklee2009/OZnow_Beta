@@ -64,13 +64,13 @@ public class AllListActivity extends ActionBarActivity implements AdapterView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_oz_main);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Log.d("AllList", "meg onCreate");
-        contentDBHelper=new ContentDBHelper(this);
-        listView = (ListView) findViewById(R.id.allList);
+        Log.d("AllList", "meg onCreate");//Log 정보
+        contentDBHelper=new ContentDBHelper(this);// db 연결
+        listView = (ListView) findViewById(R.id.allList);// listView alllist
         ImageButton categoryBtn = (ImageButton) findViewById(R.id.btn_category);
         TextView txt_today=(TextView)findViewById(R.id.txt_today);
         mypage_drawer=(DrawerLayout)findViewById(R.id.drawerlayout);
-        ListView list=(ListView)findViewById(R.id.drawer);
+        ListView list=(ListView)findViewById(R.id.drawer);//drawer의 리스트뷰
         ArrayAdapter<String> arrayAdapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,drawer_str);
         list.setAdapter(arrayAdapter);
         mypage_drawer_toggle=new ActionBarDrawerToggle(this, mypage_drawer, R.string.close, R.string.open){
@@ -140,7 +140,6 @@ public class AllListActivity extends ActionBarActivity implements AdapterView.On
             bookmark=cursor.getString(3);
             c_name=cursor.getString(4);
             c_color=cursor.getString(5);
-            listView.setId(_id);
             allList.add(new ContentVO(_id, content, kind, bookmark, c_name, c_color));
         }
         listView.setOnItemClickListener(this);
