@@ -20,5 +20,6 @@
         <activity android:name=".OZnowActivity"/>
         <activity android:name=".OZCategoryActivity"/>
         <activity android:name=".LoginActivity"/>
+        <activity android:name=".OZTimeActivity"/>
     </application>
 </manifest>

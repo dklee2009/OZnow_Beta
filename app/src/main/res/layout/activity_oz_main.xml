@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|right"
                 android:layout_weight="1"
-                android:background="@color/white"
+                android:background="@android:color/white"
                 android:src="@drawable/selector_add" />
 
         </FrameLayout>
