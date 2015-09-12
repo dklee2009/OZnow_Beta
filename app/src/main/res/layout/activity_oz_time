@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="90dp"
+            android:background="@drawable/time"
+            android:layout_gravity="center"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="10dp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+            <TimePicker
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="90dp"
+            android:background="@drawable/alarm"
+            android:layout_gravity="center"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="10dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/btn_sun"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:text="Sun"
+                android:textColor="@android:color/holo_red_light"
+                />
+
+            <Button
+                android:id="@+id/btn_mon"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:text="Mon"
+                android:textColor="@android:color/holo_green_light"
+               />
+
+            <Button
+                android:id="@+id/btn_tue"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:text="Tue"
+                android:textColor="@android:color/holo_green_light"
+                />
+
+            <Button
+                android:id="@+id/btn_wed"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:text="Wed"
+                android:textColor="@android:color/holo_green_light" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/btn_thu"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:text="Thu"
+                android:textColor="@android:color/holo_green_light"/>
+
+            <Button
+                android:id="@+id/btn_fri"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:text="Fri"
+                android:textColor="@android:color/holo_green_light" />
+
+            <Button
+                android:id="@+id/btn_sat"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:text="Sat"
+                android:textColor="@android:color/holo_green_light" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="90dp"
+            android:background="@drawable/repeat"
+            android:layout_gravity="center"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="10dp"/>
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:columnCount="3"
+            android:rowCount="2"
+            android:layout_gravity="center">
+            <Button
+                android:id="@+id/btn_sound"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="소리"
+                android:textColor="@android:color/holo_green_light"/>
+
+            <Button
+                android:id="@+id/btn_vib"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="진동"
+                android:textColor="@android:color/holo_green_light" />
+
+            <Button
+                android:id="@+id/btn_non"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="없음"
+                android:textColor="@android:color/holo_green_light" />
+
+            <Button
+                android:id="@+id/btn_ten"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10분"
+                android:textColor="@android:color/holo_green_light"
+                android:layout_column="1"/>
+        </GridLayout>
+
+    </LinearLayout>
+
+    </LinearLayout>

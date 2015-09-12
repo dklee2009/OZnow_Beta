@@ -30,20 +30,27 @@
                 android:layout_weight="1" />
         </LinearLayout>
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        q<FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-            <ImageButton
-                android:id="@+id/btn_category"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|right"
-                android:layout_weight="1"
-                android:background="@android:color/white"
-                android:src="@drawable/selector_add" />
+        <ImageButton
+            android:id="@+id/btn_category"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom|right"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:background="@drawable/btn_add"/>
 
-        </FrameLayout>
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="10dp"
+            android:background="@drawable/page_1"
+            android:layout_gravity="bottom|center"
+            android:layout_margin="20dp"
+            />
+    </FrameLayout>
 
         <ListView
             android:id="@+id/drawer"
@@ -56,6 +63,7 @@
             android:orientation="vertical" />
 
     </android.support.v4.widget.DrawerLayout>
+
 
 
 </LinearLayout>
