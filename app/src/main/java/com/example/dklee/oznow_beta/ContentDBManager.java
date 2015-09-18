@@ -1,19 +1,18 @@
 package com.example.dklee.oznow_beta;
 
 import android.content.Context;
-import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 /**
  * Created by kyounghee on 2015-08-14.
  */
-public class ContentDBHelper extends SQLiteOpenHelper {
-    public static final String DATABASE_NAME="cDB";
-    public static final String TABLE_NAME="ozContent";
-    public static final int DATABASE_VERSION=4;
-    public ContentDBHelper(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+public class ContentDBManager extends SQLiteOpenHelper {
+    public static final String DATABASE_NAME="Oznow.db";
+    public static final String TABLE_NAME="OZnow";
+
+    public ContentDBManager(Context context) {
+        super(context, DATABASE_NAME, null, 1);
     }
     /**
      * 처음 db 생성시 호출
@@ -21,8 +20,8 @@ public class ContentDBHelper extends SQLiteOpenHelper {
      */
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql="create table "+TABLE_NAME
-                +"(_id integer primary key autoincrement, content text not null, kind text not null, bookmark text, c_name text, c_color text not null)";
+        String sql="CREATE TABLE "+TABLE_NAME
+                +"(_id integer primary key autoincrement, content text, kind text, bookmark text, c_name text, c_color text)";
         db.execSQL(sql);
     }
     /**

@@ -14,13 +14,13 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.Toast;
 
+import java.io.InputStream;
+
 public class OZnowActivity extends Activity {
     private EditText et_todo;
     private EditText et_note;
-    private ContentDBHelper contentDBHelper;
-    private String category_name;
-    private String kind;
-    private String category_color;
+    private ContentDBManager contentDBManager;
+    private String category_name, kind, category_color, sub1, sub2, sub3, sub4, sub5, sub6, sub7, sub8, sub9, sub10 ;
     private TableRow tr1, tr2, tr3, tr4, tr5, tr6, tr7, tr8, tr9, tr10;
     private EditText et_sub1, et_sub2, et_sub3, et_sub4, et_sub5, et_sub6, et_sub7, et_sub8, et_sub9, et_sub10;
 
@@ -73,7 +73,7 @@ public class OZnowActivity extends Activity {
         spec2.setIndicator("Note");
         tab.addTab(spec2);
         tab.setCurrentTab(0);
-        contentDBHelper = new ContentDBHelper(this);
+        contentDBManager = new ContentDBManager(getApplicationContext());
         TableLayout tb_category_todo = (TableLayout) findViewById(R.id.tb_category_todo);
         TableRow tb_category_note = (TableRow) findViewById(R.id.tb_category_note);
         kind = "todo";
@@ -126,15 +126,19 @@ public class OZnowActivity extends Activity {
             public void onClick(View v) {
                 String content = null;
                 if (et_note.getText().toString().equals("")) {
+                    kind="todo";
                     content = et_todo.getText().toString();
                 } else if (et_todo.getText().toString().equals("")) {
+                    kind="note";
                     content = et_note.getText().toString();
-                } else {
-                    Toast.makeText(OZnowActivity.this, "텍스트를 입력하세요", Toast.LENGTH_SHORT).show();
+                }
+                // content가 null일때 처리해야함!!!!
+                if(!et_sub1.getText().toString().equals("")){
+                    sub1=et_sub1.getText().toString();
                 }
                 String bookmark = "no";
-                String sql = "insert into ozContent(content, kind, bookmark, c_name, c_color) values(?,?,?,?,?)";
-                SQLiteDatabase db = contentDBHelper.getWritableDatabase();
+                String sql = "insert into OZnow(content, kind, bookmark, c_name, c_color) values(?,?,?,?,?)";
+                SQLiteDatabase db = contentDBManager.getWritableDatabase();
                 db.execSQL(sql, new String[]{content, kind, bookmark, category_name, category_color});
                 // 자장 후 전체 리스트로 돌아가도록 설정
                 Intent intent = new Intent(OZnowActivity.this, AllListActivity.class);
@@ -155,7 +159,7 @@ public class OZnowActivity extends Activity {
         btn_subtask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               tr1.setVisibility(View.VISIBLE);
+                tr1.setVisibility(View.VISIBLE);
                 String sub1=et_sub1.getText().toString();
                 if(!et_sub1.getText().toString().equals("")){
                     tr2.setVisibility(View.VISIBLE);
@@ -199,4 +203,3 @@ public class OZnowActivity extends Activity {
         });
     }
 }
-
